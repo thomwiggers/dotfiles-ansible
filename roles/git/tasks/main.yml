@@ -1,0 +1,31 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- block:
+  - name: Install git configuration files
+    copy:
+      src: "{{ item }}"
+      dest: "/home/{{ ansible_user }}/.{{item}}"
+      mode: 0644
+      owner: "{{ ansible_user }}"
+    with_items:
+      - gitconfig
+      - gitattributes
+
+  - name: Install hub with pacman when on Arch and using sudo
+    pacman:
+      name: hub
+      state: present
+    become: yes
+    when: use_sudo and ansible_distribution == "Archlinux"
+    tags:
+      - hub
+
+  - name: Install hub locally when not using sudo + Arch
+    include: hub-local.yml
+    when: not (use_sudo and ansible_distribution == "Archlinux")
+    tags:
+      - hub
+  # end of block
+  tags:
+    - git

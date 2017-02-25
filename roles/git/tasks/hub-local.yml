@@ -1,0 +1,37 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Create unpacking dir
+  file:
+    state: directory
+    path: "{{ working_cache_dir }}/hub/{{ hub_version }}"
+
+- name: "Download hub release {{ hub_version }}"
+  unarchive:
+    remote_src: yes
+    src: "https://github.com/github/hub/releases/download/v{{ hub_version }}/hub-linux-amd64-{{ hub_version }}.tgz"
+    dest: "{{ working_cache_dir }}/hub/{{ hub_version }}"
+    creates: "{{ working_cache_dir }}/hub/{{ hub_version }}/hub-linux-amd64-{{ hub_version }}/bin/hub"
+
+- name: "Create target dirs"
+  file:
+    status: directory
+    path: "{{ ansible_user_dir }}/{{ item }}"
+  with_items:
+    - bin
+    - .zsh/completion
+
+- name: "Install hub"
+  copy:
+    remote_src: yes
+    src: "{{ working_cache_dir }}/hub/{{ hub_version }}/hub-linux-amd64-{{ hub_version }}/{{ item.src }}"
+    dest: "{{ ansible_user_dir }}/{{ item.dest }}"
+    owner: "{{ ansible_user }}"
+    mode: "{{ item.mode|default(0644) }}"
+    force: yes
+  with_items:
+    - src: bin/hub
+      dest: bin/hub
+      mode: 0755
+    - src: etc/hub.zsh_completion
+      dest: .zsh/completion/hub

@@ -1,0 +1,5 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+zsh_enabled: yes
+shell_ssh_agent: yes

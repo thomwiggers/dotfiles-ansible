@@ -1,0 +1,5 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+ansible_connection: local
+# Install applications with root
+use_sudo: yes

@@ -1,0 +1,20 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Install zsh with Pacman
+  pacman:
+    name: zsh
+    state: present
+  become: yes
+  when: use_sudo and ansible_distribution == "Archlinux"
+
+- name: Install zshrc
+  template:
+    src: zsh/zshrc.j2
+    dest: "/home/{{ ansible_user }}/.zshrc"
+    owner: "{{ ansible_user }}"
+    mode: 0640
+
+- name: Set up shell
+  command: "chsh -s /bin/zsh"
+  when: ansible_user_shell != "/bin/zsh"

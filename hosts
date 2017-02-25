@@ -1,0 +1,13 @@
+[own_machines]
+lethe
+styx
+cocytus
+
+[powerline]
+lethe
+styx
+cocytus
+lilo.science.ru.nl
+
+[remote_shells]
+lilo.science.ru.nl ansible_user=twiggers

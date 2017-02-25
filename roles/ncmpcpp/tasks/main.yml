@@ -1,0 +1,8 @@
+---
+
+- name: copy ncmpcpp configuration
+  copy:
+    src: ncmpcpp/config
+    dest: "{{ ansible_user_dir}}/.ncmpcpp/config"
+    mode: 0644
+    owner: "{{ ansible_user }}"

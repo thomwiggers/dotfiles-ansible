@@ -1,0 +1,7 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Set up gnupg configuration
+  include: gnupg.yml
+  tags:
+    - gnupg

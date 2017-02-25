@@ -1,0 +1,26 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Make sure .gnupg dir exists
+  file:
+    state: directory
+    name: "{{ ansible_user_dir }}/.gnupg"
+    mode: 0700
+    owner: "{{ ansible_user }}"
+
+- name: Copy configuration files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/.gnupg/{{ item }}"
+    mode: 0644
+    owner: "{{ ansible_user }}"
+  with_items:
+    - gpg.conf
+    - gpg-agent.conf
+
+- name: Copy dirmngr file
+  template:
+    src: "dirmngr.conf.j2"
+    dest: "{{ ansible_user_dir }}/.gnupg/dirmngr.conf"
+    mode: 0644
+    owner: "{{ ansible_user }}"

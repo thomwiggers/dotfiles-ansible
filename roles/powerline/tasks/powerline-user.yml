@@ -1,0 +1,9 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Install powerline
+  pip:
+    name: powerline-status
+    state: latest
+    extra_args: "--user"
+    executable: "{{ powerline_pip_version }}"

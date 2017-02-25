@@ -1,0 +1,9 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: zsh config
+  include: zsh.yml
+  when: "{{ zsh_enabled }}"
+  tags:
+    - shell
+    - zsh

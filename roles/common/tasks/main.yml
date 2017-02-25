@@ -1,0 +1,9 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Create cache dir for working with tars
+  file:
+    path: "{{ working_cache_dir }}"
+    state: directory
+    mode: 0700
+    owner: "{{ ansible_user }}"

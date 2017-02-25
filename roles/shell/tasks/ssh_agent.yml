@@ -1,0 +1,19 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Install systemd SSH agent service
+  copy:
+    src: ssh-agent.service
+    dest: "{{ ansible_user_dir }}/.config/systemd/user/ssh-agent.service"
+    mode: 0644
+    owner: "{{ ansible_user }}"
+  when: ansible_service_mgr == "systemd"
+
+- name: Enable systemd SSH agent service
+  systemd:
+    user: yes
+    enabled: yes
+    daemon-reload: yes
+    name: ssh-agent.service
+    state: started
+  when: ansible_service_mgr == "systemd"

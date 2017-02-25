@@ -1,0 +1,14 @@
+---
+
+- name: Install powerline globally on Arch iff sudo
+  include: powerline-global-arch.yml
+  become: yes
+  when: ansible_distribution == "Archlinux" and use_sudo
+
+- name: Install powerline locally on other systems
+  include: powerline-user.yml
+  when: ansible_distribution != "Archlinux" or not use_sudo
+
+- name: Find powerline modules dir
+  command: "{{ powerline_pip_version }} show powerline-status | grep Location: | cut -d ' ' -f2"
+  register: powerline_site_packages_path
