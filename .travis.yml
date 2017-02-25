@@ -1,0 +1,8 @@
+language: generic
+sudo: false
+
+before_install:
+    - pip install ansible
+
+script:
+    - ansible-playbook --check-syntax lethe.yml
