@@ -4,5 +4,10 @@ sudo: false
 install:
     - pip install ansible
 
+before_script:
+    - echo move host vars out of the way
+    - mv host_vars bla
+    - mv group_vars bla
+
 script:
-    - ansible-playbook --syntax-check lethe.yml
+    - ansible-playbook --syntax-check --vault-password-file=/dev/null lethe.yml
