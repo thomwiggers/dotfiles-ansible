@@ -16,6 +16,25 @@
       command: "{{ powerline_pip_version }} show powerline-status | grep Location: | cut -d ' ' -f2"
       register: powerline_site_packages_path
 
+    - name: Copy powerline configuration
+      copy:
+        src: config-powerline
+        dest: .config/powerline
+
+    - name: Install powerline-daemon systemd file
+      copy:
+        src: powerline-daemon.service
+        dest: .config/systemd/user/powerline-daemon.service
+      when: ansible_service_mgr == "systemd"
+
+    - name: Enable powerline-daemon service
+      systemd:
+        name: powerline-daemon.service
+        enable: yes
+        daemon_reload: yes
+        user: yes
+      when: ansible_service_mgr == "systemd"
+
   tags:
     - powerline
     - shell
