@@ -110,7 +110,7 @@ fi
 
 ## aliases
 
-if $(which hub > /dev/null); then
+if which hub > /dev/null 2>&1 ; then
     eval $(hub alias -s);
 fi
 
@@ -128,6 +128,8 @@ alias irc='ssh irc -t tmux a'
 alias mirc='mosh irc tmux a'
 alias clm='$HOME/clean/bin/clm'
 alias graderand="cd ./\$(grep -lr 'Needs Grading' s*/s*.txt | sort -R | cut -d'/' -f1 | head -1)"
+
+fpath=$(~/.zsh/completions $fpath)
 
 package() {
     tar cvJf "$1.tar.xz" "$*"
