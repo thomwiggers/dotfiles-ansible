@@ -1,2 +1,1 @@
----
-os: ubuntu
+lilo5.science.ru.nl

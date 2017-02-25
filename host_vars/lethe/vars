@@ -1,3 +1,2 @@
 ---
-os: arch
 ansible_become_pass: "{{ lethe_sudo_key }}"
