@@ -1,6 +1,7 @@
 {
 	"common": {
-		"term_truecolor": false
+		"term_truecolor": "auto",
+        "default_top_theme": "powerline_unicode7"
 	},
 	"ext": {
 		"ipython": {
@@ -45,7 +46,7 @@
 			}
 		},
 		"wm": {
-			"colorscheme": "default",
+			"colorscheme": "solarized",
 			"theme": "default"
 		}
 	}
