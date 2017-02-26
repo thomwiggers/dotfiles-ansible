@@ -1,2 +1,4 @@
 ---
 ansible_become_pass: "{{ lethe_sudo_key }}"
+mpd_host: cocytus
+no_lock_suspend: yes

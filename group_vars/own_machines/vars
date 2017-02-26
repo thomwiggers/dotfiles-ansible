@@ -3,3 +3,5 @@
 ansible_connection: local
 # Install applications with root
 use_sudo: yes
+
+owncloud: yes

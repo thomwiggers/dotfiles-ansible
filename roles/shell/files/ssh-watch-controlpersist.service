@@ -1,0 +1,9 @@
+[Unit]
+Description=SSH ControlPersist watcher
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env python3 %h/.local/lib/watch-controlpersist-sockets.py
+
+[Install]
+WantedBy=default.target

@@ -1,8 +1,14 @@
 ---
 
+- name: Install ncmpcpp on Arch
+  pacman:
+    name: ncmpcpp
+    state: present
+  when: use_sudo and ansible_distribution == "Archlinux"
+
 - name: copy ncmpcpp configuration
-  copy:
-    src: ncmpcpp/config
+  template:
+    src: ncmpcpp/config.j2
     dest: "{{ ansible_user_dir}}/.ncmpcpp/config"
     mode: 0644
     owner: "{{ ansible_user }}"

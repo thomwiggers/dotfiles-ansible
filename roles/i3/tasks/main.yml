@@ -1,0 +1,37 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Install i3 on Arch with sudo
+  include: install-i3.yml
+  when: use_sudo and ansible_distribution == "Archlinux"
+  tags:
+    - i3
+
+- block:
+  - name: Install static configuration
+    copy:
+      src: "{{ item.src }}"
+      dest: "{{ ansible_user_dir }}/.config/{{ item.dest }}"
+      mode: "{{ item.mode|default('0644') }}"
+    with_items:
+      - src: i3/wallpaper.png
+        dest: i3/wallpaper.png
+      - src: i3status/measure-net-speed.bash
+        dest: i3status/measure-net-speed.bash
+        mode: "0755"
+      
+  - name: Install templates
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ ansible_user_dir }}/{{ item.dest }}"
+      mode: "{{ item.mode|default('0644') }}"
+    with_items:
+      - src: i3/config.j2
+        dest: .config/i3/config
+      - src: i3status/config.j2
+        dest: .config/i3status/config
+      - src: i3status/wrapper.py.j2
+        dest: .config/i3status/wrapper.py
+        mode: "0755"
+  tags:
+    - i3

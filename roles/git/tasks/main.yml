@@ -11,6 +11,7 @@
     with_items:
       - gitconfig
       - gitattributes
+      - gitignore
 
   - name: Install hub with pacman when on Arch and using sudo
     pacman:
