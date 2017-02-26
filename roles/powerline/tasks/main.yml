@@ -15,6 +15,8 @@
       shell: "{{ powerline_pip_version }} show powerline-status | grep Location: | cut -d ' ' -f2"
       register: powerline_site_packages_path
       changed_when: false
+      tags:
+        - zsh
 
     - name: Copy powerline configuration
       synchronize:
