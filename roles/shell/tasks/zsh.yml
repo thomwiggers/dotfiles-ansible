@@ -8,6 +8,14 @@
   become: yes
   when: use_sudo and ansible_distribution == "Archlinux"
 
+- name: Create zsh dirs
+  file:
+    state: directory
+    path: "{{ ansible_user_dir }}/{{ item }}"
+  with_items:
+    - ".zsh"
+    - ".zsh/completions"
+
 - name: Install zshrc
   template:
     src: zsh/zshrc.j2

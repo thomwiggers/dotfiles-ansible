@@ -1,0 +1,30 @@
+---
+- name: Install gvim on Arch with sudo
+  pacman:
+    state: present
+    name: "{{ vim_package|default('gvim') }}"
+  become: yes
+  when: use_sudo and ansible_distribution == "Archlinux"
+
+- name: Create vim folders
+  file:
+    state: directory
+    dest: "{{ ansible_user_dir }}/{{ item }}"
+  with_items:
+    - ".vim"
+    - ".vim/undo"
+    - ".vim/swaps"
+    - ".vim/backups"
+    - ".vim/bundle"
+
+- name: Copy vimrc
+  copy:
+    src: "vimrc"
+    dest: "{{ ansible_user_dir }}/.vimrc"
+
+- name: Install Vundle
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: "{{ ansible_user_dir }}/.vim/bundle/Vundle.vim"
+    update: yes
+    depth: 1

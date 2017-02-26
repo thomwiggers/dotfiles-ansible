@@ -27,11 +27,11 @@
     src: "{{ working_cache_dir }}/hub/{{ hub_version }}/hub-linux-amd64-{{ hub_version }}/{{ item.src }}"
     dest: "{{ ansible_user_dir }}/{{ item.dest }}"
     owner: "{{ ansible_user }}"
-    mode: "{{ item.mode|default(0644) }}"
+    mode: "{{ item.mode|default('0644') }}"
     force: yes
   with_items:
     - src: bin/hub
       dest: bin/hub
-      mode: 0755
+      mode: "0755"
     - src: etc/hub.zsh_completion
       dest: .zsh/completion/hub

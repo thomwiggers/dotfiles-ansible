@@ -1,7 +1,6 @@
 ---
 
-- name: Powerline
-  block:
+- block:
 
     - name: Install powerline globally on Arch iff sudo
       include: powerline-global-arch.yml
@@ -13,24 +12,26 @@
       when: ansible_distribution != "Archlinux" or not use_sudo
 
     - name: Find powerline modules dir
-      command: "{{ powerline_pip_version }} show powerline-status | grep Location: | cut -d ' ' -f2"
+      shell: "{{ powerline_pip_version }} show powerline-status | grep Location: | cut -d ' ' -f2"
       register: powerline_site_packages_path
+      changed_when: false
 
     - name: Copy powerline configuration
-      copy:
-        src: config-powerline
-        dest: .config/powerline
+      synchronize:
+        src: config-powerline/
+        dest: "{{ ansible_user_dir }}/.config/powerline"
+        checksum: true
 
     - name: Install powerline-daemon systemd file
       copy:
         src: powerline-daemon.service
-        dest: .config/systemd/user/powerline-daemon.service
+        dest: "{{ ansible_user_dir }}/.config/systemd/user/powerline-daemon.service"
       when: ansible_service_mgr == "systemd"
 
     - name: Enable powerline-daemon service
       systemd:
         name: powerline-daemon.service
-        enable: yes
+        enabled: yes
         daemon_reload: yes
         user: yes
       when: ansible_service_mgr == "systemd"

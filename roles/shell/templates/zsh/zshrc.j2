@@ -129,7 +129,7 @@ alias mirc='mosh irc tmux a'
 alias clm='$HOME/clean/bin/clm'
 alias graderand="cd ./\$(grep -lr 'Needs Grading' s*/s*.txt | sort -R | cut -d'/' -f1 | head -1)"
 
-fpath=$(~/.zsh/completions $fpath)
+fpath=(~/.zsh/completions $fpath)
 
 package() {
     tar cvJf "$1.tar.xz" "$*"

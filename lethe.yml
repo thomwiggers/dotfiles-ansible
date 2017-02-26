@@ -4,6 +4,7 @@
 - hosts: lethe
   become: no
   roles:
+    - powerline
     - shell
     - gnupg
     - git
