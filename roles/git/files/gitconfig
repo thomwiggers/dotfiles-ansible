@@ -1,7 +1,4 @@
-# Sample gitconfig
-#
-# You probably want to change the [user] section here since you are not me.
-
+;  vim: set ts=4 sw=4 tw=0 ft=gitconfig et :
 [hub]
     protocol = ssh
 [user]
