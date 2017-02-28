@@ -1,0 +1,50 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+# to delete something, first add it with state: absent
+
+# general tools
+tools:
+  - name: ansible
+  - name: base-devel
+  - name: biber
+  - name: ccid
+  - name: cowsay
+  - name: curl
+  - name: fortune-mod
+  - name: gnupg
+  - name: jq
+  - name: nmap
+  - name: ntfs-3g
+  - name: openbsd-netcat
+  - name: opensc
+  - name: openvpn
+  - name: p7zip
+  - name: python
+  - name: python2
+  - name: python-pip
+  - name: python2-pip
+  - name: python-tox
+  - name: python-virtualenv
+  - name: python-virtualenvwrapper
+  - name: texlive-most
+  - name: the_silver_searcher
+  - name: tmux
+  - name: unrar
+  - name: wget
+
+
+# tools for machines not run headlessly
+tools_desktop:
+  - name: adobe-source-code-pro-fonts
+  - name: arandr
+  - name: calibre
+  - name: chromium
+  - name: firefox
+  - name: keepassx2
+  - name: noto-fonts
+  - name: noto-fonts-cjk
+  - name: noto-fonts-emoji
+  - name: thunderbird
+  - name: vlc
+  - name: xsel

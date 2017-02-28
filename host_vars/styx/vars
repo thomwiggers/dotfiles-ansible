@@ -1,4 +1,4 @@
 ---
 networkmanager: yes
 autorandr: yes
-ansible_become_pass: "{{ styx_sudo_key }}"
+ansible_become_pass: "{{ styx_sudo_password }}"

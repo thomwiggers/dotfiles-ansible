@@ -1,0 +1,20 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+- block:
+  - name: Install applications 
+    pacman:
+      name: "{{ item.name }}"
+      state: "{{ item.state|default('present') }}"
+    become: yes
+    with_items: "{{ tools }}"
+
+  - name: Install tools for desktop use
+    pacman:
+      name: "{{ item.name }}"
+      state: "{{ item.state|default('present') }}"
+    become: yes
+    with_items: "{{ tools_desktop }}"
+  tags:
+    - tools
+    - packages
+    - install

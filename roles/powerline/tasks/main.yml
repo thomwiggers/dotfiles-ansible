@@ -12,9 +12,7 @@
       when: ansible_distribution != "Archlinux" or not use_sudo
 
     - name: Find powerline modules dir
-      shell: "{{ powerline_pip_version }} show powerline-status | grep Location: | cut -d ' ' -f2"
-      register: powerline_site_packages_path
-      changed_when: false
+      find_powerline:
       tags:
         - zsh
 
