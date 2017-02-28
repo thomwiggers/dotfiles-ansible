@@ -19,7 +19,7 @@
     st = status
     count   = !git shortlog -sn
     tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    yolo = "!git commit -m \"$(curl -s whatthecommit.com/index.txt;echo;echo '[git yolo]')\""
+    yolo = "!git commit -m \"$(curl -s whatthecommit.com/index.txt | sed s/\\\"// ;echo;echo '[git yolo]')\""
     up = pull --rebase --autostash
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     publish = "!git push -u origin $(git branch-name)"
