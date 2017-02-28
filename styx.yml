@@ -1,0 +1,13 @@
+#  vim: set ts=2 sw=2 tw=0 et :
+---
+
+- hosts: styx
+  become: no
+  roles:
+    - powerline
+    - shell
+    - gnupg
+    - git
+    - ncmpcpp
+    - i3
+    - vim
