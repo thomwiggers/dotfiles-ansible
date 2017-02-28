@@ -1,2 +1,3 @@
 ---
 networkmanager: yes
+autorandr: yes

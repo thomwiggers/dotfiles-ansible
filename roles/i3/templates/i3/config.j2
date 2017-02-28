@@ -158,8 +158,15 @@ bar {
     #tray_output LVDS1
 }
 
+{% if autorandr %}
+# Autorandr
+exec --no-startup-id autorandr -c
+{% endif %}
+
+{% if nitrogen %}
 # Wallpaper
 exec --no-startup-id nitrogen --restore
+{% endif %}
 
 # Locker
 set $Locker i3lock -i /home/thom/.config/i3/wallpaper.png -t -e

@@ -5,3 +5,5 @@ mpd_host: ~
 has_battery: no
 no_lock_suspend: no
 networkmanager: no
+autorandr: no
+nitrogen: no
