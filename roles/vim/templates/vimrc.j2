@@ -57,6 +57,11 @@ Plugin 'camilstaps/vim-bb'
 " Fugitive for git
 Plugin 'tpope/vim-fugitive'
 
+{% if ansible_host == "styx" %}
+" LLVM
+Plugin 'git://github.com/llvm-mirror/llvm/', {'rtp': 'utils/vim'}
+{% endif %}
+
 call vundle#end()
 
 filetype plugin indent on
