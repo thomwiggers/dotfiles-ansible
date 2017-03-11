@@ -18,21 +18,9 @@ setopt MULTIBYTE
 setopt COMBINING_CHARS
 setopt COMPLETE_ALIASES
 
-# emacs mode
-bindkey -e
-
-# Home/End/Delete
-bindkey '\e[H' beginning-of-line
-bindkey '\e[F' end-of-line 
-bindkey '\e[3~' delete-char
-
-# ctrl-backspace/delete
-bindkey "\C-_" backward-kill-word
-bindkey "\e[3;5~" kill-word
-
-# ctrl-left/right
-bindkey "\e[1;5C" forward-word
-bindkey "\e[1;5D" backward-word
+for f in $HOME/.zsh/lib/*.zsh; do
+    source $f;
+done;
 
 # Editor
 export EDITOR=vim

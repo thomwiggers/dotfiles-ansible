@@ -8,6 +8,11 @@
   become: yes
   when: use_sudo and ansible_distribution == "Archlinux"
 
+- name: Copy zsh dir
+  copy:
+    src: zsh/
+    dest: "{{ ansible_user_dir }}/.zsh"
+
 - name: Create zsh dirs
   file:
     state: directory
