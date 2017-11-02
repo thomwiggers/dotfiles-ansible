@@ -2,7 +2,7 @@
 ---
 
 - name: Install i3 on Arch with sudo
-  include: install-i3.yml
+  import_tasks: install-i3.yml
   when: use_sudo and ansible_distribution == "Archlinux"
   tags:
     - i3
@@ -19,7 +19,7 @@
       - src: i3status/measure-net-speed.bash
         dest: i3status/measure-net-speed.bash
         mode: "0755"
-      
+
   - name: Install templates
     template:
       src: "{{ item.src }}"

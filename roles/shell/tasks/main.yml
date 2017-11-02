@@ -2,7 +2,7 @@
 ---
 
 - name: zsh config
-  include: zsh.yml
+  import_tasks: zsh.yml
   when: "{{ zsh_enabled }}"
   tags:
     - shell

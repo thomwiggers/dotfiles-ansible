@@ -23,7 +23,7 @@
       - hub
 
   - name: Install hub locally when not using sudo + Arch
-    include: hub-local.yml
+    import_tasks: hub-local.yml
     when: not (use_sudo and ansible_distribution == "Archlinux")
     tags:
       - hub

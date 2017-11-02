@@ -3,12 +3,12 @@
 - block:
 
     - name: Install powerline globally on Arch iff sudo
-      include: powerline-global-arch.yml
+      import_tasks: powerline-global-arch.yml
       become: yes
       when: ansible_distribution == "Archlinux" and use_sudo
 
     - name: Install powerline locally on other systems
-      include: powerline-user.yml
+      import_tasks: powerline-user.yml
       when: ansible_distribution != "Archlinux" or not use_sudo
 
     - name: Find powerline modules dir
