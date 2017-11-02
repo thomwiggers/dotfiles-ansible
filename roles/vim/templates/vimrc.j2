@@ -18,8 +18,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Ansible
 Plugin 'pearofducks/ansible-vim'
 
-" Syntastic syntax checker
-Plugin 'scrooloose/syntastic'
+" ALE syntax checkers and linters
+Plugin 'w0rp/ale'
 
 " Solarized colors
 Plugin 'thomwiggers/vim-colors-solarized'
@@ -56,11 +56,6 @@ Plugin 'camilstaps/vim-bb'
 
 " Fugitive for git
 Plugin 'tpope/vim-fugitive'
-
-{% if ansible_host == "styx" %}
-" LLVM
-Plugin 'git://github.com/llvm-mirror/llvm/', {'rtp': 'utils/vim'}
-{% endif %}
 
 call vundle#end()
 
@@ -242,7 +237,7 @@ set undodir=~/.vim/undo
 " Solarized
 " --------------------------------------
 syntax enable
-set background=dark
+set background=light
 call togglebg#map("<F5>")
 colorscheme solarized
 

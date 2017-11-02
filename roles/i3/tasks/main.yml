@@ -25,6 +25,7 @@
       src: "{{ item.src }}"
       dest: "{{ ansible_user_dir }}/{{ item.dest }}"
       mode: "{{ item.mode|default('0644') }}"
+      backup: yes
     with_items:
       - src: i3/config.j2
         dest: .config/i3/config

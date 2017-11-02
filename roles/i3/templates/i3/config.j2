@@ -3,7 +3,8 @@
 #
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
-#
+
+{{ ansible_managed | comment }}
 
 # i3 config file (v4)
 #
@@ -257,9 +258,14 @@ bindsym XF86TouchpadToggle exec synclient TouchpadOff=$(synclient -l | grep -c '
 exec --no-startup-id nm-applet
 {% endif %}
 
+# Printer applet
+exec --no-startup-id system-config-printer-applet
+
 # Window control
 for_window [class="Corebird" instance="corebird"] floating enable, border normal
 for_window [class="Wine" instance="game.exe"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [window_role="pop-up"] floating enable, move absolute center
 
 {% if owncloud %}
 # Start owncloud
