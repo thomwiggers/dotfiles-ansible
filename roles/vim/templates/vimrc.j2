@@ -21,9 +21,6 @@ Plugin 'pearofducks/ansible-vim'
 " ALE syntax checkers and linters
 Plugin 'w0rp/ale'
 
-" Solarized colors
-Plugin 'thomwiggers/vim-colors-solarized'
-
 "Git gutter
 Plugin 'airblade/vim-gitgutter'
 
@@ -234,25 +231,12 @@ set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
 " --------------------------------------
-" Solarized
+" Theme
 " --------------------------------------
 syntax enable
 set background=light
 call togglebg#map("<F5>")
-colorscheme solarized
-
-let g:solarized_contrast="high"    "default value is normal
-" let g:solarized_termtrans=0
-" let g:solarized_degrade=0
-" let g:solarized_bold=1
-" let g:solarized_underline=1
-" let g:solarized_italic=1
-" let g:solarized_termcolors=256
-" let g:solarized_visibility="normal"
-" let g:solarized_diffmode="normal"
-" let g:solarized_hitrail=0
-" let g:solarized_menu=1
-
+colorscheme default
 
 
 " -----------------------------------
