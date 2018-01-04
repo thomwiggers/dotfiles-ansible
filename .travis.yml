@@ -13,3 +13,4 @@ before_script:
 
 script:
     - ansible-playbook --syntax-check lethe.yml
+    - ansible-playbook --syntax-check styx.yml
