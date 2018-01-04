@@ -45,6 +45,7 @@ tools_desktop:
   - name: noto-fonts
   - name: noto-fonts-cjk
   - name: noto-fonts-emoji
+  - name: playerctl
   - name: thunderbird
   - name: vlc
   - name: xsel

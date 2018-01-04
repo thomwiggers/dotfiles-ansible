@@ -219,11 +219,19 @@ mode "$mode_mpc" {
 }
 bindsym $mod+F10 mode "$mode_mpc"
 bindsym $mod+F9 exec mpc -h {{ mpd_host }} toggle && killall -USR1 i3status
-bindsym XF86AudioPlay exec mpc -h {{ mpd_host }} toggle && killall -USR1 i3status
-bindsym XF86AudioNext exec mpc -h {{ mpd_host }} next && killall -USR1 i3status
-bindsym XF86AudioPrev exec mpc -h {{ mpd_host }} prev && killall -USR1 i3status
-bindsym XF86Launch8 exec mpc -h {{ mpd_host }} volume -2 && killall -USR1 i3status
-bindsym XF86Launch9 exec mpc -h {{ mpd_host }} volume +2 && killall -USR1 i3status
+bindsym Shift+XF86AudioPlay exec mpc -h {{ mpd_host }} toggle && killall -USR1 i3status
+bindsym Shift+XF86AudioNext exec mpc -h {{ mpd_host }} next && killall -USR1 i3status
+bindsym Shift+XF86AudioPrev exec mpc -h {{ mpd_host }} prev && killall -USR1 i3status
+bindsym Shift+XF86Launch8 exec mpc -h {{ mpd_host }} volume -2 && killall -USR1 i3status
+bindsym Shift+XF86Launch9 exec mpc -h {{ mpd_host }} volume +2 && killall -USR1 i3status
+{% endif %}
+
+{% if not mpd_host %}
+## Spotify/generic settings
+# Play/Pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86Launch9 exec --no-startup-id playerctl next
+bindsym XF86Launch8 exec --no-startup-id playerctl previous
 {% endif %}
 
 # Brightness controls
