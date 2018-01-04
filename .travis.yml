@@ -8,6 +8,7 @@ before_script:
     - echo move host vars out of the way
     - mv host_vars bla
     - mv group_vars bla
+    - echo "hi" > emptypw
 
 script:
-    - ansible-playbook --syntax-check --vault-password-file=/dev/null lethe.yml
+    - ansible-playbook --syntax-check --vault-password-file=emptypw lethe.yml
