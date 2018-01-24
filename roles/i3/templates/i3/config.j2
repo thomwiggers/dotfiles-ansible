@@ -169,8 +169,9 @@ exec --no-startup-id autorandr -c
 exec --no-startup-id nitrogen --restore
 {% endif %}
 
+exec --no-startup-id {{ ansible_user_dir }}/.config/i3/update-lockscreen.sh &
 # Locker
-set $Locker i3lock -i /home/thom/.config/i3/wallpaper.png -t -e
+set $Locker {{ ansible_user_dir }}/.config/i3/lockscreen.sh
 exec --no-startup-id xautolock -time 10 -locker "$Locker" -corners -0+0 -cornerdelay 10 -cornerredelay 10 &
 
 # shutdown menu
@@ -184,9 +185,9 @@ mode "$mode_system" {
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
 {% if no_lock_suspend %}
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
-    bindsym Shift+l exec --no-startup-id $Locker && sleep 1 && systemctl suspend, mode "default"
+    bindsym Shift+l exec --no-startup-id $Locker --suspend, mode "default"
 {% else %}
-    bindsym s exec --no-startup-id $Locker && sleep 1 && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id $Locker --suspend, mode "default"
 {% endif %}
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  

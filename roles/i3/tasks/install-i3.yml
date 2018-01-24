@@ -8,7 +8,6 @@
   become: yes
   with_items:
     - i3-wm
-    - i3lock
     - i3status
     - rofi
     - perl

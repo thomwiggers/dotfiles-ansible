@@ -4,6 +4,7 @@
 - hosts: styx
   become: no
   roles:
+    - arch
     - tools
     - powerline
     - shell

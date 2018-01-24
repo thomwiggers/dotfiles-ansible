@@ -16,6 +16,12 @@
     with_items:
       - src: i3/wallpaper.png
         dest: i3/wallpaper.png
+      - src: i3/lockscreen.sh
+        dest: i3/lockscreen.sh
+        mode: "0755"
+      - src: i3/update-lockscreen.sh
+        dest: i3/update-lockscreen.sh
+        mode: "0755"
       - src: i3status/measure-net-speed.bash
         dest: i3status/measure-net-speed.bash
         mode: "0755"
