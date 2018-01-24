@@ -8,5 +8,7 @@ exists()
 mydir=${0%/*}
 
 if exists betterlockscreen; then
-    betterlockscreen --update "$mydir/wallpaper.png"
+    betterlockscreen  \
+        --update "$mydir/wallpaper.png" \
+        --resolution 1920x1080
 fi
