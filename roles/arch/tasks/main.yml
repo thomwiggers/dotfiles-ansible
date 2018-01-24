@@ -1,0 +1,14 @@
+
+- block:
+  - name: Create pacman hooks folder
+    file:
+      state: directory
+      path: /etc/pacman.d/hooks
+
+  - name: Insert pacman cache cleaning hook
+    copy:
+      src: paccache.hook
+      dest: /etc/pacman.d/hooks
+  become: yes
+  tags:
+    - arch
