@@ -19,7 +19,7 @@
       state: "{{ item.state|default('present') }}"
     become: yes
     with_items: "{{ tools_desktop }}"
-    when: "{{ is_desktop|default('false') }}"
+    when: is_desktop|default('false')
   tags:
     - tools
     - packages
