@@ -1,6 +1,11 @@
 # vim: set ts=4 sw=2 tw=0 et :
 ---
 - block:
+  - name: Update pacman cache
+    pacman:
+      update_cache: yes
+    become: yes
+
   - name: Install applications 
     pacman:
       name: "{{ item.name }}"

@@ -8,6 +8,15 @@
     - i3
 
 - block:
+  - name: "Ensure dirs exist"
+    file:
+      path: "{{ ansible_user_dir }}/{{ item }}"
+      state: directory
+    with_items:
+      - ".config"
+      - ".config/i3"
+      - ".config/rofi"
+
   - name: Install static configuration
     copy:
       src: "{{ item.src }}"
