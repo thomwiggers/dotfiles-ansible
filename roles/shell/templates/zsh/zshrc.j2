@@ -27,7 +27,7 @@ done;
 export EDITOR=vim
 
 # Path: add local python packages, ruby
-export PATH="$HOME/.local/bin:$HOME/.gem/ruby/2.3.0/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 {% if ansible_service_mgr == "systemd" and shell_ssh_agent %}
 # SSH Agent with Systemd
@@ -68,13 +68,11 @@ function precmd {
 
 ## Completion
 autoload -U compinit
-compinit
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
 # XZ threaded
 XZ_OPTS="-T 8"
-
 
 if [ -e "/usr/bin/virtualenvwrapper_lazy.sh" ]; then
     export WORKON_HOME="$HOME/.pythonenvs"
@@ -107,6 +105,13 @@ if $(which thefuck > /dev/null); then
     eval $(thefuck --alias);
 fi
 
+if $(which ntfy > /dev/null); then
+    eval "$(ntfy shell-integration --shell zsh)"
+    # extra ignored ntfy commands
+    export AUTO_NTFY_DONE_IGNORE="$AUTO_NTFY_DONE_IGNORE htop irc"
+
+fi
+
 alias ls='ls --color=auto --quoting-style=literal'
 alias ll='ls -l --human-readable'
 alias la='ls -l --almost-all --human-readable'
@@ -117,6 +122,7 @@ alias irc='ssh irc -t tmux a'
 alias mirc='mosh irc tmux a'
 alias clm='$HOME/clean/bin/clm -I $HOME/clean/lib/StdEnv/ -I $HOME/clean/lib/Dynamics/'
 alias graderand="cd ./\$(grep -lr 'Needs Grading' s*/s*.txt | sort -R | cut -d'/' -f1 | head -1)"
+alias ccat="pygmentize -g"
 
 fpath=(~/.zsh/completions $fpath)
 
@@ -133,5 +139,11 @@ open() {
     xdg-open $@ 2> /dev/null & disown
 }
 
+if [ -e "$HOME/.localrc" ]; then
+    source "$HOME/.localrc"
+fi
+
 # initialize completion
 compinit
+
+#  vim: set ft=zsh ts=4 sw=4 tw=0 et :
