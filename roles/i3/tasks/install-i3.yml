@@ -11,3 +11,10 @@
     - i3status
     - rofi
     - perl
+
+- name: Install cbatticon
+  pacman:
+    name: "cbatticon"
+    state: present
+  become: yes
+  when: "has_battery"

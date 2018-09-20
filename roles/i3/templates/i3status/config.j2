@@ -19,9 +19,6 @@ order += "path_exists VPN"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "load"
-{% if has_battery %}
-order += "battery 0"
-{% endif %}
 order += "tztime local"
 
 wireless _first_ {
@@ -34,15 +31,6 @@ ethernet _first_ {
     format_up = "E: %ip (%speed)"
     format_down = "E: down"
 }
-
-{% if has_battery %}
-battery 0 {
-    format = "%status %percentage %remaining"
-    status_chr = "⚇"
-    status_bat = "⚡"
-    status_full = "☻"
-}
-{% endif %}
 
 run_watch DHCP {
     pidfile = "/run/dhcpcd.pid"

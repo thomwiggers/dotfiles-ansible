@@ -283,3 +283,12 @@ exec --no-startup-id owncloud &
 
 # Start redshift
 exec --no-startup-id redshift-gtk &
+
+{% if has_battery %}
+# Start cbatticon
+exec --no-startup-id cbatticon -i symbolic &
+{% endif %}
+
+# change kbd layout
+bindsym $mod+F1 exec setxkbmap us colemak
+bindsym $mod+F2 exec setxkbmap us
