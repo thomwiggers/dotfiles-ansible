@@ -5,10 +5,16 @@
       state: directory
       path: /etc/pacman.d/hooks
 
+  - name: Make sure pacman-contrib is installed
+    pacman:
+      name: paccache
+      state: present
+
   - name: Insert pacman cache cleaning hook
     copy:
       src: paccache.hook
       dest: /etc/pacman.d/hooks
   become: yes
+  when: ansible_distribution == "Archlinux"
   tags:
     - arch
