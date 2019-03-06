@@ -6,15 +6,11 @@
   roles:
     - arch
     - tools
-  vars_files:
-    - secrets.yml
 
 - hosts: powerline
   become: no
   roles:
     - powerline
-  vars_files:
-    - secrets.yml
 
 - hosts: all
   become: no
@@ -25,5 +21,3 @@
     - i3
     - vim
     - vpn
-  vars_files:
-    - secrets.yml

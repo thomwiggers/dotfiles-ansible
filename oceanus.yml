@@ -11,5 +11,3 @@
     - gnupg
     - git
     - vim
-  vars_files:
-    - secrets.yml
