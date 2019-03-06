@@ -11,9 +11,9 @@
 			{
 				"function": "powerline.segments.common.env.user",
 				"priority": 30,
-                "args": {
-                    "hide_user": "thom"
-                }
+				"args": {
+					"hide_user": "thom"
+				}
 			},
 			{
 				"function": "powerline.segments.common.env.virtualenv",

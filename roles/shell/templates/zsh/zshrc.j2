@@ -108,8 +108,7 @@ fi
 if $(which ntfy > /dev/null); then
     eval "$(ntfy shell-integration --shell zsh)"
     # extra ignored ntfy commands
-    export AUTO_NTFY_DONE_IGNORE="$AUTO_NTFY_DONE_IGNORE htop irc"
-
+    export AUTO_NTFY_DONE_IGNORE="$AUTO_NTFY_DONE_IGNORE htop irc dmesg journalctl"
 fi
 
 alias ls='ls --color=auto --quoting-style=literal'

@@ -7,13 +7,16 @@
 
   - name: Make sure pacman-contrib is installed
     pacman:
-      name: paccache
+      name: pacman-contrib
       state: present
 
-  - name: Insert pacman cache cleaning hook
+  - name: Insert hooks
     copy:
-      src: paccache.hook
+      src: "{{ item }}"
       dest: /etc/pacman.d/hooks
+    loop:
+      - paccache.hook
+      - reflector.hook
   become: yes
   when: ansible_distribution == "Archlinux"
   tags:

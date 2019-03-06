@@ -29,7 +29,7 @@
 - name: Install SSH controlpersist script
   copy: 
     src: watch-controlpersist-sockets.py
-    dest: "{{ ansible_user_dir }}"/.local/lib/"
+    dest: "{{ ansible_user_dir }}/.local/lib/"
     mode: 0755
     owner: "{{ ansible_user }}"
   when: ansible_service_mgr == "systemd" and networkmanager

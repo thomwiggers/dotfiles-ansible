@@ -25,10 +25,13 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 
 " Python mode
-Plugin 'klen/python-mode'
+Plugin 'python-mode/python-mode'
 
 " LaTeX
 Plugin 'vim-latex/vim-latex'
+
+" Rust
+Plugin 'rust-lang/rust.vim'
 
 " WebAPI
 Plugin 'mattn/webapi-vim'
@@ -247,8 +250,8 @@ let g:pastebin_api_dev_key = "8f0cbc6cf0dd0c11d39e13ab896809cb"
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
-        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = printf(" vim: set ft=%s ts=%d sw=%d tw=%d %set :",
+        \ &filetype, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
   call append(line("$"), l:modeline)
 endfunction
@@ -260,5 +263,20 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 let g:pymode_python = 'python3'
 let g:pymode_rope_lookup_project  = 1
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pep527']
-let g:pymode_lint_cwindow = 1
+let g:pymode_lint = 1
+let g:pymode_rope = 1
+
+" ----------------------------------
+"  Rust
+" ----------------------------------
+let g:rustfmt_autosave = 0
+let g:rust_clip_command = 'xclip -selection clipboard'
+
+" -----------------------------------
+"  ALE settings
+" -----------------------------------
+
+let g:ale_linters = {
+\    'python': ['flake8', 'pyflakes', 'pycodestyle', 'pylint'],
+\    'rust': ['cargo', 'rustfmt'],
+\}

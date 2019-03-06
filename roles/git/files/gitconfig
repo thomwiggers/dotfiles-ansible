@@ -63,14 +63,16 @@
     user = thomwiggers
 [push]
     default = simple
-[url "git@github.com"]
-    pushInsteadOf = git://github.com
+[url "git@github.com:"]
+    pushInsteadOf = git://github.com/
+[url "git@bitbucket.org:"]
+    pushInsteadOf = https://bitbucket.org/
 [url "git@github.com:thomwiggers"]
     pushInsteadOf = "https://github.com/thomwiggers"
 [url "git@github.com:thomwiggers/"]
     pushInsteadOf = "git://github.com/thomwiggers/"
 [merge]
-    tool = meld
+    tool = vimdiff
 [commit]
     gpgsign = on
 [gitlab]
@@ -91,3 +93,5 @@
     ff = only
 [rebase]
     missingCommitsCheck = error
+[submodule]
+	fetchJobs = 0

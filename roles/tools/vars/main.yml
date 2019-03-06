@@ -23,10 +23,13 @@ tools:
   - name: python
   - name: python2
   - name: python-pip
+  - name: python-pipenv
   - name: python2-pip
+  - name: python2-pipenv
   - name: python-tox
   - name: python-virtualenv
   - name: python-virtualenvwrapper
+  - name: rsync
   - name: texlive-most
   - name: the_silver_searcher
   - name: tmux

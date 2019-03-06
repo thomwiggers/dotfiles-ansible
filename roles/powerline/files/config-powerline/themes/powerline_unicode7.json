@@ -11,9 +11,6 @@
 	},
 	"spaces": 1,
 	"segment_data": {
-        "user": {
-            "after": " \uf007"
-        },
 		"branch": {
 			"before": "🔀 "
 		},
@@ -41,7 +38,7 @@
 		},
 
 		"time": {
-			"before": "\uf017 "
+			"before": "🕐 "
 		},
 
 		"powerline.segments.common.net.network_load": {
@@ -120,15 +117,20 @@
 					"S":  "S·LINE",
 					"^S": "S·BLCK",
 					"i":  "INSERT",
+					"ic": "I·COMP",
+					"ix": "I·C-X ",
 					"R":  "RPLACE",
 					"Rv": "V·RPLC",
+					"Rc": "R·COMP",
+					"Rx": "R·C-X ",
 					"c":  "COMMND",
 					"cv": "VIM·EX",
 					"ce": "NRM·EX",
 					"r":  "PROMPT",
 					"rm": "-MORE-",
 					"r?": "CNFIRM",
-					"!":  "!SHELL"
+					"!":  "!SHELL",
+					"t":  "TERM  "
 				}
 			}
 		},
@@ -150,8 +152,8 @@
 				"text": "🖫⃥"
 			}
 		},
+
 		"powerline.segments.i3wm.scratchpad": {
-			"before": "", 
 			"args": {
 				"icons": {
 					"fresh": "●",

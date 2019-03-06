@@ -1,62 +1,29 @@
 {
-    "segments": {
-        "left": [
-            {
-                "function": "powerline.segments.i3wm.scratchpad"
-            },
-            {
-                "function": "powerline.segments.i3wm.mode"
-            }
-        ],
-        "right": [
-            {
-                "function": "powerline.segments.common.players.mpd",
-                "name": "player",
-                "priority": 70,
-                "args": {
-                    "host": "griffin",
-                    "format": "{state_symbol} {artist} – {title} ({elapsed}/{total})",
-                    "state_symbols": {
-                        "fallback": "\uf12a",
-                        "play": "\uf04b",
-                        "stop": "\uf04d",
-                        "pause": "\uf04c"
-                    }
-                }
-            },
-            {
-                "function": "powerline.segments.common.wthr.weather",
-                "priority": 50,
-                "args": {
-                    "temp_coldest": -5,
-                    "temp_hottest": 35
-                }
-            },
-            {
-                "function": "powerline.segments.common.bat.battery",
-                "name": "battery",
-                "priority": 40,
-                "args": {
-                    "online": "\uf1e6",
-                    "offline": "\uf241"
-                }
-            },
-            {
-                "function": "powerline.segments.common.time.date"
-            },
-            {
-                "function": "powerline.segments.common.time.date",
-                "name": "time",
-                "priority": 50,
-                "args": {
-                    "format": "%H:%M",
-                    "istime": true
-                }
-            },
-            {
-                "priority": 10,
-                "function": "powerline.segments.common.env.user"
-            }
-        ]
-    }
+	"segments": {
+		"right": [
+			{
+				"function": "powerline.segments.common.wthr.weather",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+			{
+				"function": "powerline.segments.common.mail.email_imap_alert",
+				"priority": 10,
+				"args": {
+					"username": "",
+					"password": ""
+				}
+			}
+		]
+	}
 }

@@ -7,5 +7,6 @@ Target = *
 
 [Action]
 Description = Cleaning pacman cache...
+Depends = pacman-contrib
 When = PostTransaction
 Exec = /usr/bin/paccache -r 

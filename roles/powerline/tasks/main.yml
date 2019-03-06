@@ -16,6 +16,15 @@
       tags:
         - zsh
 
+    - name: Make sure directories exist
+      file:
+        state: directory
+        recurse: yes
+        path: "{{ item }}"
+      loop:
+        - "{{ ansible_user_dir }}/.config/powerline"
+        - "{{ ansible_user_dir }}/.config/systemd/user/"
+
     - name: Copy powerline configuration
       synchronize:
         src: config-powerline/
@@ -35,7 +44,6 @@
         daemon_reload: yes
         user: yes
       when: ansible_service_mgr == "systemd"
-
   tags:
     - powerline
     - shell

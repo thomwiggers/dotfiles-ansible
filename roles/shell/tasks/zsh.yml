@@ -3,7 +3,10 @@
 
 - name: Install zsh with Pacman
   pacman:
-    name: zsh
+    name:
+      - zsh
+      - zsh-completions
+      - zsh-syntax-highlighting
     state: present
   become: yes
   when: use_sudo and ansible_distribution == "Archlinux"

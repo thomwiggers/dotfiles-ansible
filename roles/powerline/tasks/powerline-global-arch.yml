@@ -2,8 +2,8 @@
 
 - name: Install powerline
   pacman:
-    name: "{{ item }}"
+    name:
+      - powerline
+      - powerline-vim
     state: present
   become: yes
-  with_items:
-    - powerline

@@ -2,21 +2,38 @@
 lethe
 styx
 cocytus
+oceanus
+
+[archlinux]
+lethe
+styx
+cocytus
+oceanus
 
 [powerline]
 lethe
 styx
 cocytus
-lilo5.science.ru.nl
+oceanus
+lilo6.science.ru.nl
 
 # machines with a battery
 [battery]
 styx
+oceanus
 
 # machines that aren't headless
 [desktop]
 lethe
 styx
+oceanus
 
 [remote_shells]
 lilo5.science.ru.nl ansible_user=twiggers
+
+[vpn]
+styx
+servertest.local
+
+[vagrant]
+servertest.local host_key_checking=false

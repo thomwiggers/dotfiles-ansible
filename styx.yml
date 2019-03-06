@@ -12,3 +12,5 @@
     - git
     - i3
     - vim
+  vars_files:
+    - secrets.yml

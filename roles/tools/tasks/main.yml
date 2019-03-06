@@ -24,3 +24,4 @@
     - tools
     - packages
     - install
+  when: ansible_distribution == "Archlinux"
