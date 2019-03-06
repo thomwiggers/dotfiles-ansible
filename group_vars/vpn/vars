@@ -1,0 +1,4 @@
+---
+
+openvpn_server: servertest.local
+openvpn_ipv6_range: fe80::64:30ff:fe56:75d:1000::/96

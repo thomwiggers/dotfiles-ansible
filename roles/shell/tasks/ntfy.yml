@@ -1,0 +1,17 @@
+---
+
+- name: Install ntfy
+  pip:
+    name: ntfy
+    state: latest
+    extra_args: "--user"
+
+- name: Create config dir
+  file:
+    state: directory
+    path: "{{ ansible_user_dir }}/.config/ntfy"
+
+- name: Install ntfy config
+  template:
+    src: ntfy/ntfy.yml.j2
+    dest: "{{ ansible_user_dir }}/.config/ntfy/ntfy.yml"

@@ -9,7 +9,7 @@ gi.require_version('NMClient', '1.0')
 def active_connections_changed(client, event):
 
     for sock in os.listdir(os.path.expanduser('~/.ssh/sockets')):
-        host, port = sock[len('socket-'):].split(':')
+        host, port = sock.split(':')
         command = "ssh -O exit {} -p {}".format(host, port)
         os.system(command)
         try:

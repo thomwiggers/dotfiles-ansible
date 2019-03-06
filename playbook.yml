@@ -1,0 +1,29 @@
+#  vim: set ts=2 sw=2 tw=0 et :
+---
+
+- hosts: own_machines
+  become: no
+  roles:
+    - arch
+    - tools
+  vars_files:
+    - secrets.yml
+
+- hosts: powerline
+  become: no
+  roles:
+    - powerline
+  vars_files:
+    - secrets.yml
+
+- hosts: all
+  become: no
+  roles:
+    - shell
+    - gnupg
+    - git
+    - i3
+    - vim
+    - vpn
+  vars_files:
+    - secrets.yml

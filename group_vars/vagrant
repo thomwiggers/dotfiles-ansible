@@ -1,0 +1,7 @@
+---
+# ansible settings
+ansible_host: 127.0.0.1
+ansible_port: 2222
+ansible_private_key_file: ".vagrant/machines/{{ inventory_hostname }}/virtualbox/private_key"
+ansible_user: vagrant
+host_key_checking: false

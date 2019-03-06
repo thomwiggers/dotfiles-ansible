@@ -1,0 +1,15 @@
+#  vim: set ts=2 sw=2 tw=0 et :
+---
+
+- hosts: oceanus
+  become: no
+  roles:
+    - arch
+    - tools
+    - powerline
+    - shell
+    - gnupg
+    - git
+    - vim
+  vars_files:
+    - secrets.yml
