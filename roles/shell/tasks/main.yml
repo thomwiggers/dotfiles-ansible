@@ -18,3 +18,9 @@
   tags:
     - ntfy
     - shell
+
+- name: Install tmux config
+  import_tasks: tmux.yml
+  tags:
+    - tmux
+    - shell

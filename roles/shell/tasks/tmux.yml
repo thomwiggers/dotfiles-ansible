@@ -1,0 +1,30 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+
+- name: Install zsh with Pacman
+  pacman:
+    name:
+      - tmux
+    state: present
+  become: yes
+  when: use_sudo and ansible_distribution == "Archlinux"
+
+- name: Install tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
+    update: yes
+
+- name: Install tmux config
+  template:
+    src: tmux/tmux.conf.j2
+    dest: "{{ ansible_user_dir }}/.tmux.conf"
+  register: tmuxconfig
+
+- name: Install tmux plugins
+  command: "{{ ansible_user_dir }}/.tmux/plugins/tpm/bin/install_plugins"
+  when: tmuxconfig.changed
+
+- name: Install tmux plugins
+  command: "{{ ansible_user_dir }}/.tmux/plugins/tpm/bin/clean_plugins"
+  when: tmuxconfig.changed

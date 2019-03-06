@@ -3,7 +3,7 @@
 
 - name: Install zsh with Pacman
   pacman:
-    name: 
+    name:
       - zsh
       - zsh-completions
       - zsh-syntax-highlighting

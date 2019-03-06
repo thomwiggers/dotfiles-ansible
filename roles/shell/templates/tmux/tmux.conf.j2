@@ -1,0 +1,14 @@
+set -g default-terminal "screen-256color"
+
+{% if powerline_enabled %}
+source "/usr/share/powerline/bindings/tmux/powerline.conf"
+{% endif %}
+
+# list of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+# Initialize tmux plugin manager
+run -b '~/.tmux/plugins/tpm/tpm'
