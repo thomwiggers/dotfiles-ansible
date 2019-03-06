@@ -54,6 +54,18 @@ Plugin 'camilstaps/vim-bb'
 " Fugitive for git
 Plugin 'tpope/vim-fugitive'
 
+" :FixWhitespace
+Plugin 'bronson/vim-trailing-whitespace'
+
+" Surround.vim
+Plugin 'tpope/vim-surround'
+
+" NERD tree
+Plugin 'scrooloose/nerdtree'
+
+" NERD-tree git plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -103,6 +115,7 @@ inoremap <Up> <C-o>gk
 " ----------------------
 "  UI
 " ----------------------
+set hidden                      " Don't abandon hidden buffers
 set ruler                       " Show cursor pos all the time
 set noshowcmd                   " don't display incomplete commands
 set nolazyredraw                " don't do this
@@ -186,9 +199,6 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
   
-" ZSH
-au BufRead,BufNewFile .zsh_rc,.functions,.commonrc set ft=zsh
-
 " LaTeX settings
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
@@ -217,10 +227,7 @@ set laststatus=2                        " Always show the status line
 " ---------------------------------------
 "  Strip trailing whitespace
 " ---------------------------------------
-function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
-endfunction
-map <leader>ss :call StripWhitespace ()<CR>
+map <leader>ss :FixWhitespace<CR>
 
 " --------------------------------------
 " swapfiles
@@ -243,7 +250,10 @@ set background=dark
 " -----------------------------------
 let g:pastebin_api_dev_key = "8f0cbc6cf0dd0c11d39e13ab896809cb"
 
+
+" ---------------------------------------------
 " Append modeline after last line in buffer.
+" ---------------------------------------------
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
@@ -268,3 +278,17 @@ let g:ale_linters = {
 \    'python': ['flake8', 'pyflakes', 'pycodestyle', 'pylint'],
 \    'rust': ['cargo', 'rustfmt'],
 \}
+
+" ----------------------------------
+"  NERD tree
+" ----------------------------------
+
+" Ctrl+N for NERD tree
+map <C-n> :NERDTreeToggle<CR>
+
+" Close vim if NERDtree is only remaining file
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Open NERDtree automatically if opening folder
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
