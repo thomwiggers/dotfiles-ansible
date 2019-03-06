@@ -1,10 +1,10 @@
 " Powerline settings
-{% if powerline_enabled %}
+"{% if powerline_enabled %}
 let g:powerline_pycmd="py3"
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
-{% endif %}
+"{% endif %}
 
 "Vundle settings
 set nocompatible
@@ -23,9 +23,6 @@ Plugin 'w0rp/ale'
 
 "Git gutter
 Plugin 'airblade/vim-gitgutter'
-
-" Python mode
-Plugin 'python-mode/python-mode'
 
 " LaTeX
 Plugin 'vim-latex/vim-latex'
@@ -256,15 +253,6 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
-
-" -----------------------------------
-"  Python Mode
-" ----------------------------------
-let g:pymode_python = 'python3'
-let g:pymode_rope_lookup_project  = 1
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_lint = 1
-let g:pymode_rope = 1
 
 " ----------------------------------
 "  Rust
