@@ -2,7 +2,7 @@
 
 - name: Install ntfy
   pip:
-    name: ntfy
+    name: "ntfy[emoji,pid]"
     state: latest
     extra_args: "--user"
 

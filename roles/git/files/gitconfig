@@ -1,97 +1,96 @@
-;  vim: set ts=4 sw=4 tw=0 ft=gitconfig et :
+;  vim: set ts=4 sw=4 tw=0 ft=gitconfig noet :
 [hub]
-    protocol = ssh
+	protocol = ssh
 [user]
-    name = Thom Wiggers
-    email = thom@thomwiggers.nl
-    signingkey = 4871E82F
+	name = Thom Wiggers
+	email = thom@thomwiggers.nl
+	signingkey = 4871E82F
 [alias]
-    br = branch
-    ci = commit
-    co = checkout
-    df = diff
-    g = grep -I
-    pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
-    smp = submodule -q foreach git pull -q origin master
-    st = status
-    count   = !git shortlog -sn
-    tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    yolo = "!git commit -m \"$(curl -s whatthecommit.com/index.txt | sed s/\\\"// ;echo;echo '[git yolo]')\""
-    up = pull --rebase --autostash
-    branch-name = "!git rev-parse --abbrev-ref HEAD"
-    publish = "!git push -u origin $(git branch-name)"
+	br = branch
+	ci = commit
+	co = checkout
+	df = diff
+	g = grep -I
+	pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
+	smp = submodule -q foreach git pull -q origin master
+	st = status
+	count   = !git shortlog -sn
+	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	yolo = "!git commit -m \"$(curl -s whatthecommit.com/index.txt | sed s/\\\"// ;echo;echo '[git yolo]')\""
+	branch-name = "!git rev-parse --abbrev-ref HEAD"
+	publish = "!git push -u origin $(git branch-name)"
 
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [core]
-    excludesfile = ~/.gitignore
-    attributesfile = ~/.gitattributes
-    editor = vim
-    eol = lf
-    autocrlf = false
-    whitespace = fix
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	editor = vim
+	eol = lf
+	autocrlf = false
+	whitespace = fix
 [apply]
-    whitespace = fix
+	whitespace = fix
 [merge]
 
 [mergetool]
-    keepBackup = false
+	keepBackup = false
 [rerere]
-    # log fixed conflicts
-    enabled = true
+	# log fixed conflicts
+	enabled = true
 [help]
-    autocorrect = 1
+	autocorrect = 1
 [diff "exif"]
-    textconv = exiftool
+	textconv = exiftool
 [github]
-    user = thomwiggers
+	user = thomwiggers
 [push]
-    default = simple
+	default = simple
 [url "git@github.com:"]
-    pushInsteadOf = git://github.com/
+	pushInsteadOf = git://github.com/
 [url "git@bitbucket.org:"]
-    pushInsteadOf = https://bitbucket.org/
+	pushInsteadOf = https://bitbucket.org/
 [url "git@github.com:thomwiggers"]
-    pushInsteadOf = "https://github.com/thomwiggers"
+	pushInsteadOf = "https://github.com/thomwiggers"
 [url "git@github.com:thomwiggers/"]
-    pushInsteadOf = "git://github.com/thomwiggers/"
+	pushInsteadOf = "git://github.com/thomwiggers/"
 [merge]
-    tool = vimdiff
+	tool = vimdiff
 [commit]
-    gpgsign = on
+	gpgsign = on
 [gitlab]
-    url = http://git.rded.nl
+	url = http://git.rded.nl
 [credential]
-    helper = /usr/lib/git-core/git-credential-gnome-keyring
+	helper = /usr/lib/git-core/git-credential-gnome-keyring
 [transfer]
-    fsckobjects = true
+	fsckobjects = true
 [fetch]
-    fsckobjects = true
+	fsckobjects = true
 [receive]
-    fsckobjects = true
-[git-up "fetch"]
-    prune = true
+	fsckobjects = true
 [branch]
-    autoSetupRebase = local
+	autoSetupRebase = local
 [pull]
-    ff = only
+	ff = only
+	rebase = true
 [rebase]
-    missingCommitsCheck = error
+	missingCommitsCheck = error
+	autoStash = true
 [submodule]
 	fetchJobs = 0

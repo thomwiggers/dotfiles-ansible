@@ -18,5 +18,8 @@
     - shell
     - gnupg
     - git
-    - i3
     - vim
+
+- hosts: desktop
+  roles:
+    - i3

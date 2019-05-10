@@ -71,14 +71,6 @@ autoload -U compinit
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
-# XZ threaded
-XZ_OPTS="-T 8"
-
-if [ -e "/usr/bin/virtualenvwrapper_lazy.sh" ]; then
-    export WORKON_HOME="$HOME/.pythonenvs"
-    source "/usr/bin/virtualenvwrapper_lazy.sh"
-fi
-
 # Colours
 
 if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
@@ -97,20 +89,6 @@ fi
 
 ## aliases
 
-if which hub > /dev/null 2>&1 ; then
-    eval $(hub alias -s);
-fi
-
-if $(which thefuck > /dev/null); then
-    eval $(thefuck --alias);
-fi
-
-if $(which ntfy > /dev/null); then
-    eval "$(ntfy shell-integration --shell zsh)"
-    # extra ignored ntfy commands
-    export AUTO_NTFY_DONE_IGNORE="$AUTO_NTFY_DONE_IGNORE htop irc dmesg journalctl"
-fi
-
 alias ls='ls --color=auto --quoting-style=literal'
 alias ll='ls -l --human-readable'
 alias la='ls -l --almost-all --human-readable'
@@ -123,21 +101,10 @@ alias clm='$HOME/clean/bin/clm -I $HOME/clean/lib/StdEnv/ -I $HOME/clean/lib/Dyn
 alias graderand="cd ./\$(grep -lr 'Needs Grading' s*/s*.txt | sort -R | cut -d'/' -f1 | head -1)"
 alias ccat="pygmentize -g"
 alias tmux="tmux -2"
+alias gdb="gdb -q"
+alias gp="gp -q"
 
 fpath=(~/.zsh/completions $fpath)
-
-package() {
-    tar cvJf "$1.tar.xz" "$*"
-}
-
-pb() {
-    echo "Pasting"
-    curl -sF "c=@${1:--}" -w "%{redirect_url}" 'https://ptpb.pw/?r=1' -o /dev/stderr | xsel -l /dev/null -b
-}
-
-open() {
-    xdg-open $@ 2> /dev/null & disown
-}
 
 if [ -e "$HOME/.localrc" ]; then
     source "$HOME/.localrc"

@@ -15,7 +15,7 @@
 
 - name: "Create target dirs"
   file:
-    status: directory
+    state: directory
     path: "{{ ansible_user_dir }}/{{ item }}"
   with_items:
     - bin

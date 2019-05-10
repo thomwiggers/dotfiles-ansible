@@ -3,3 +3,4 @@
 
 zsh_enabled: yes
 shell_ssh_agent: yes
+networkmanager: no
