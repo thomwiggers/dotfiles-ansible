@@ -5,52 +5,54 @@
 
 # general tools
 tools:
-  - name: ansible
-  - name: base-devel
-  - name: bat
-  - name: biber
-  - name: ccid
-  - name: cowsay
-  - name: curl
-  - name: fortune-mod
-  - name: gnupg
-  - name: jq
-  - name: nmap
-  - name: ntfs-3g
-  - name: openbsd-netcat
-  - name: opensc
-  - name: openvpn
-  - name: p7zip
-  - name: python
-  - name: python2
-  - name: python-pip
-  - name: python-pipenv
-  - name: python2-pip
-  - name: python2-pipenv
-  - name: python-tox
-  - name: python-virtualenv
-  - name: python-virtualenvwrapper
-  - name: rsync
-  - name: texlive-most
-  - name: the_silver_searcher
-  - name: tmux
-  - name: unrar
-  - name: wget
-  - name: pandoc
+  - ansible
+  - base-devel
+  - bat
+  - biber
+  - ccid
+  - cowsay
+  - curl
+  - fortune-mod
+  - gnupg
+  - jq
+  - nmap
+  - ntfs-3g
+  - openbsd-netcat
+  - opensc
+  - openvpn
+  - p7zip
+  - python
+  - python2
+  - python-pip
+  - python-pipenv
+  - python2-pip
+  - python2-pipenv
+  - python-tox
+  - python-virtualenv
+  - python-virtualenvwrapper
+  - rsync
+  - texlive-most
+  - the_silver_searcher
+  - tmux
+  - unrar
+  - wget
+  - pandoc
 
 
 # tools for machines not run headlessly
 tools_desktop:
-  - name: adobe-source-code-pro-fonts
-  - name: arandr
-  - name: calibre
-  - name: chromium
-  - name: firefox
-  - name: keepassx2
-  - name: noto-fonts
-  - name: noto-fonts-cjk
-  - name: noto-fonts-emoji
-  - name: playerctl
-  - name: thunderbird
-  - name: vlc
-  - name: xsel
+  - adobe-source-code-pro-fonts
+  - arandr
+  - calibre
+  - chromium
+  - firefox
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
+  - playerctl
+  - thunderbird
+  - vlc
+  - xsel
+
+removed_tools:
+  - keepassx2
