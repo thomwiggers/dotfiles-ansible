@@ -5,6 +5,7 @@
   become: no
   roles:
     - arch
+    - timesyncd
     - tools
     - powerline
     - shell

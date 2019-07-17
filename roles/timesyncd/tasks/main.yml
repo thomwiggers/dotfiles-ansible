@@ -1,0 +1,28 @@
+---
+
+- name: Set up timezone
+  file:
+    state: link
+    src: /usr/share/zoneinfo/Europe/Amsterdam;
+    dest: /etc/localtime
+    force: yes
+  become: yes
+
+- name: "Create override directory"
+  file:
+    state: directory
+    path: "/etc/systemd/timesyncd.conf.d"
+  become: yes
+
+- name: Place timesyncd config.
+  file:
+    src: "time.nl.conf"
+    path: "/etc/systemd/timesyncd.conf.d/time.nl.conf"
+  become: yes
+
+- name: Enable systemd-timesyncd
+  service:
+    name: systemd-timesyncd
+    enabled: yes
+    state: started
+  become: yes
