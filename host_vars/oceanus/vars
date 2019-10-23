@@ -2,3 +2,9 @@
 networkmanager: yes
 autorandr: no
 ansible_become_pass: "{{ oceanus_sudo_password }}"
+
+# restic settings
+backblaze_account_id: "{{ oceanus_backblaze_account_id }}"
+backblaze_application_key: "{{ oceanus_backblaze_application_key }}"
+backblaze_bucket: "oceanus"
+restic_password: "{{ oceanus_restic_password }}"

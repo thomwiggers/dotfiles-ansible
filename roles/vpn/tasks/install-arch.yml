@@ -1,0 +1,10 @@
+---
+
+- name: Install OpenVPN
+  pacman:
+    name: openvpn
+
+- name: Install NetworkManager service
+  pacman:
+    name: networkmanager-openvpn
+  when: networkmanager

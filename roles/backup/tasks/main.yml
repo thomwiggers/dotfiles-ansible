@@ -1,0 +1,17 @@
+---
+
+- name: Install backup script
+  copy:
+    src: "restic-backup.zsh"
+    dest: "~/.zsh/lib/restic-backup.zsh"
+    mode: "0700"
+  tags:
+    - backup
+
+- name: Install backup source variables
+  template:
+    src: "restic_settings.zsh.j2"
+    dest: "~/.local/lib/restic_settings.zsh"
+    mode: "0700"
+  tags:
+    - backup

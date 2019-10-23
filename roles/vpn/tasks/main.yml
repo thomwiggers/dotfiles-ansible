@@ -1,0 +1,23 @@
+# vim: set ts=4 sw=2 tw=0 et :
+---
+- name: Install OpenVPN on Arch Linux hosts
+  import_tasks: 'install-arch.yml'
+  when: ansible_distribution == "Archlinux"
+
+- name: Install OpenVPN on Debian hosts
+  import_tasks: 'install-debian.yml'
+  when: ansible_os_family == 'Debian'
+
+- name: Set up Certificate Authority
+  import_tasks: ca.yml
+  become: no
+  tags:
+    - ca
+
+- name: Set up server
+  import_tasks: 'server.yml'
+  when: openvpn_server == inventory_hostname
+
+- name: Set up client
+  import_tasks: 'client.yml'
+  when: openvpn_server != inventory_hostname

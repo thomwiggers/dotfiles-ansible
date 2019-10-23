@@ -15,6 +15,7 @@ lethe
 styx
 cocytus
 oceanus
+sandor.cs.ru.nl
 lilo6.science.ru.nl
 
 # machines with a battery
@@ -27,9 +28,11 @@ oceanus
 lethe
 styx
 oceanus
+lilo5.science.ru.nl
 
 [remote_shells]
-lilo5.science.ru.nl ansible_user=twiggers
+lilo5.science.ru.nl
+sandor.cs.ru.nl
 
 [vpn]
 styx
@@ -37,3 +40,4 @@ servertest.local
 
 [vagrant]
 servertest.local host_key_checking=false
+clienttest.local
