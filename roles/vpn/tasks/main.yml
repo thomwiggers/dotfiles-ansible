@@ -42,7 +42,7 @@
 
 - name: "Create client configuration files"
   template:
-    src: "wg-peer.conf"
+    src: "wg-peer.conf.j2"
     dest: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/{{ item }}.conf"
     mode: "0640"
     owner: root
