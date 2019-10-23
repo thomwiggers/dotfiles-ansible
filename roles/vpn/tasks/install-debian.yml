@@ -1,21 +1,7 @@
 ---
 
-- name: Install pyOpenSSL
+- name: Install Wireguard
   apt:
-    name: python-openssl
-
-- name: Add OpenVPN apt repository key
-  apt_key:
-    url: https://swupdate.openvpn.net/repos/repo-public.gpg
-    id: 30EBF4E73CCE63EEE124DD278E6DA8B4E158C569
-
-- name: Add OpenVPN apt repository
-  apt_repository:
-    repo: "deb https://build.openvpn.net/debian/openvpn/stable {{ ansible_distribution_release }} main"
-    update_cache: yes
-  # XXX: Repo is broken on ubuntu
-  when: ansible_distribution == "Debian"
-
-- name: Install OpenVPN
-  apt:
-    name: openvpn
+    name:
+      - wireguard
+      - wireguard-tools

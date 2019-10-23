@@ -35,8 +35,8 @@ lilo5.science.ru.nl
 sandor.cs.ru.nl
 
 [vpn]
-styx
-servertest.local
+oceanus
+archeron
 
 [vagrant]
 servertest.local host_key_checking=false

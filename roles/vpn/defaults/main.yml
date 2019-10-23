@@ -1,3 +1,7 @@
 # vim: set ts=4 sw=2 tw=0 et :
 ---
 networkmanager: no
+
+# Wireguard
+am_wireguard_server: no
+wireguard_interface: wg0

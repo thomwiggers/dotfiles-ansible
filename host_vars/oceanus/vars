@@ -8,3 +8,9 @@ backblaze_account_id: "{{ oceanus_backblaze_account_id }}"
 backblaze_application_key: "{{ oceanus_backblaze_application_key }}"
 backblaze_bucket: "oceanus"
 restic_password: "{{ oceanus_restic_password }}"
+
+# Wireguard
+wireguard_public_key: "I9D8xcDVBrlfXytIEV3Me7h8FmIXky97+ouN3m+j3j0="
+wireguard_private_key: "{{ oceanus_wireguard_private_key }}"
+wireguard_preshared_key: "{{ oceanus_wireguard_preshared_key }}"
+wireguard_client_ip: 10.20.0.60

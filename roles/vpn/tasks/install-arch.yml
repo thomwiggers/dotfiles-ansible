@@ -1,8 +1,10 @@
 ---
 
-- name: Install OpenVPN
+- name: Install Wireguard
   pacman:
-    name: openvpn
+    name:
+      - wireguard-arch
+      - wireguard-tools
 
 - name: Install NetworkManager service
   pacman:

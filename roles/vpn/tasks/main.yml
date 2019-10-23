@@ -1,23 +1,60 @@
 # vim: set ts=4 sw=2 tw=0 et :
 ---
-- name: Install OpenVPN on Arch Linux hosts
+
+- name: Install Wireguard on Arch Linux hosts
   import_tasks: 'install-arch.yml'
   when: ansible_distribution == "Archlinux"
 
-- name: Install OpenVPN on Debian hosts
+- name: Install Wireguard on Debian hosts
   import_tasks: 'install-debian.yml'
   when: ansible_os_family == 'Debian'
 
-- name: Set up Certificate Authority
-  import_tasks: ca.yml
-  become: no
-  tags:
-    - ca
+- name: Enable systemd-networkd
+  systemd:
+    name: systemd-networkd
+    state: started
+    enabled: yes
 
-- name: Set up server
-  import_tasks: 'server.yml'
-  when: openvpn_server == inventory_hostname
+- name: Create systemd-networkd directory
+  file:
+    state: directory
+    path: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d"
+    mode: "0750"
+    owner: root
+    group: systemd-network
+  become: yes
 
-- name: Set up client
-  import_tasks: 'client.yml'
-  when: openvpn_server != inventory_hostname
+- set_fact:
+    wg_config_template: "{{ 'wg-server' if am_wireguard_server else 'wg-client' }}"
+
+- name: "Create wireguard systemd-networkd configuration"
+  template:
+    src: "{{ wg_config_template }}.{{ item }}.j2"
+    dest: "/etc/systemd/network/{{ wireguard_interface }}.{{ item }}"
+    mode: "0640"
+    owner: root
+    group: systemd-network
+  with_items:
+    - network
+    - netdev
+  notify:
+    - reload systemd-networkd
+
+- name: "Create client configuration files"
+  template:
+    src: "wg-peer.conf"
+    dest: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/{{ item }}.conf"
+    mode: "0640"
+    owner: root
+    group: systemd-network
+  become: yes
+  vars:
+    wireguard_public_key: "{{ hostvars[item]['wireguard_public_key'] }}"
+    wireguard_preshared_key: "{{ hostvars[item]['wireguard_preshared_key'] }}"
+    wireguard_client_ip: "{{ hostvars[item]['wireguard_client_ip'] }}"
+  with_items: "{{ groups['vpn'] }}"
+  when: "am_wireguard_server and item != inventory_hostname"
+  notify:
+    - reload systemd-networkd
+
+# XXX check if all configs are sane?

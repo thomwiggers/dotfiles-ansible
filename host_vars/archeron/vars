@@ -1,0 +1,8 @@
+---
+
+ansible_host: archeron.rded.nl
+
+# Wireguard
+am_wireguard_server: yes
+wireguard_public_key: "UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo="
+wireguard_private_key: "{{ archeron_wireguard_private_key }}"

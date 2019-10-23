@@ -1,0 +1,8 @@
+[NetDev]
+Name = {{ wireguard_interface }}
+Kind = wireguard
+Description = VPN
+
+[WireGuard]
+ListenPort = {{ wireguard_server.port | mandatory }}
+PrivateKey = {{ wireguard_private_key | mandatory }}

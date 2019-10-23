@@ -1,6 +1,6 @@
 ---
 
-- name: restart openvpn server
+- name: reload systemd-networkd
   systemd:
-    name: "openvpn@server.conf"
+    name: "systemd-networkd"
     state: restarted

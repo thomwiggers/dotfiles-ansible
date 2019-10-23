@@ -1,4 +1,9 @@
 ---
 
-openvpn_server: servertest.local
-openvpn_ipv6_range: fe80::64:30ff:fe56:75d:1000::/96
+wireguard_server:
+  public_key: "UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo="
+  network_range: 10.20.0.0/24
+  hostname: archeron.rded.nl
+  ip: 10.20.0.1
+  ansible_host: archeron
+  port: 51820
