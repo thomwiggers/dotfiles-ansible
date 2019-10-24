@@ -15,6 +15,17 @@
     state: started
     enabled: yes
 
+- name: Enable systemd-networkd-wait-online.service
+  systemd:
+    name: systemd-networkd-wait-online.service
+    enabled: yes
+
+- name: Make sure NetworkManager doesn't fuck it up
+  template:
+    src: wg-unmanaged.conf.j2
+    dest: "/etc/NetworkManager/conf.d/{{wireguard_interface}}_unmanaged.conf"
+  when: networkmanager
+
 - name: Create systemd-networkd directory
   file:
     state: directory

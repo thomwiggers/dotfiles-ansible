@@ -4,6 +4,9 @@ Name = {{ wireguard_interface }}
 [Network]
 Address = {{ wireguard_client_ip | mandatory }}/32
 
+[Link]
+RequiredForOnline = no
+
 [Route]
 Gateway = {{ wireguard_server.ip | mandatory }}
 Destination = {{ wireguard_server.network_range | mandatory }}

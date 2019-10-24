@@ -3,7 +3,7 @@
 wireguard_server:
   public_key: "UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo="
   network_range: 10.20.0.0/24
-  hostname: archeron.rded.nl
+  hostname: 178.63.116.170
   ip: 10.20.0.1
   ansible_host: archeron
   port: 51820
