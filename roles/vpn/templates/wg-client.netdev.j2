@@ -11,5 +11,6 @@ PrivateKey = {{ wireguard_private_key | mandatory }}
 PublicKey = {{ wireguard_server.public_key }}
 PresharedKey = {{ wireguard_preshared_key | mandatory }}
 AllowedIPs = {{ wireguard_server.network_range }}
+AllowedIPs = {{ wireguard_server.network_ipv6_range }}
 Endpoint = {{ wireguard_server.hostname }}:{{ wireguard_server.port }}
 PersistentKeepalive = 25

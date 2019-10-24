@@ -2,12 +2,8 @@
 Name = {{ wireguard_interface }}
 
 [Network]
-Address = {{ wireguard_server.ip | mandatory }}/32
+Address = {{ wireguard_server.ip | mandatory }}/24
+Address = {{ wireguard_server.ipv6 | mandatory }}/96
 
 [Link]
 RequiredForOnline = no
-
-[Route]
-Gateway = {{ wireguard_server.ip | mandatory }}
-Destination = {{ wireguard_server.network_range | mandatory }}
-GatewayOnLink = yes

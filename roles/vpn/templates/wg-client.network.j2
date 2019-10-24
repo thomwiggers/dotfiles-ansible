@@ -3,11 +3,13 @@ Name = {{ wireguard_interface }}
 
 [Network]
 Address = {{ wireguard_client_ip | mandatory }}/32
+Address = {{ wireguard_client_ipv6 | mandatory }}
 
 [Link]
 RequiredForOnline = no
 
 [Route]
-Gateway = {{ wireguard_server.ip | mandatory }}
 Destination = {{ wireguard_server.network_range | mandatory }}
-GatewayOnlink = true
+
+[Route]
+Destination = {{ wireguard_server.network_ipv6_range | mandatory }}
