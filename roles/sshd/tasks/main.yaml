@@ -1,0 +1,29 @@
+---
+
+- block:
+  - name: Install SSH on Arch Linux hosts
+    import_tasks: 'install-arch.yml'
+    when: ansible_distribution == "Archlinux"
+
+  - name: Install SSH on Debian hosts
+    import_tasks: 'install-debian.yml'
+    when: ansible_os_family == 'Debian'
+
+  - name: Enable sshd
+    service:
+      name: sshd
+      state: started
+      enabled: yes
+
+  - name: "Disable PasswordAuthentication"
+    lineinfile:
+      dest: "/etc/ssh/sshd_config"
+      regexp: "^#?PasswordAuthentication (yes|no)$"
+      line: "PasswordAuthentication no"
+      state: "present"
+    notify:
+    - "restart sshd"
+  become: yes
+  tags:
+    - sshd
+    - ssh

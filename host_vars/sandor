@@ -1,3 +1,4 @@
 ---
 ansible_user: thom
 zsh_enabled: false
+ansible_host: sandor.cs.ru.nl

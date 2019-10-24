@@ -1,0 +1,30 @@
+- block:
+  - name: "Create .ssh dir"
+    file:
+      state: directory
+      path: "{{ ansible_user_dir }}/.ssh"
+      owner: "{{ ansible_user }}"
+      mode: "0700"
+
+  - name: Obtain keyfile from this machine
+    openssh_keypair:
+      path: "{{ ansible_user_dir }}/.ssh/id_rsa"
+      type: "rsa"
+      size: 2048
+      #owner: "{{ ansible_user }}"
+      #mode: "0600"
+      #comment: "{{ ansible_user }}@{{ inventory_hostname }} Created by ansible"
+    register: sshkey
+    tags:
+      - bla
+
+  - name: Write public key to other machines
+    debug:
+      msg:
+        - "{{ groups['all'] }}"
+        - "{{ sshkey.public_key }}"
+    delegate_to: "{{ item }}"
+    loop: "{{ groups['remote_shells'] }}"
+    when: sshkey.changed
+  tags:
+    - ssh

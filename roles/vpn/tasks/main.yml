@@ -1,92 +1,96 @@
 # vim: set ts=4 sw=2 tw=0 et :
 ---
 
-- name: Install Wireguard on Arch Linux hosts
-  import_tasks: 'install-arch.yml'
-  when: ansible_distribution == "Archlinux"
+- block:
+  - name: Install Wireguard on Arch Linux hosts
+    import_tasks: 'install-arch.yml'
+    when: ansible_distribution == "Archlinux"
 
-- name: Install Wireguard on Debian hosts
-  import_tasks: 'install-debian.yml'
-  when: ansible_os_family == 'Debian'
+  - name: Install Wireguard on Debian hosts
+    import_tasks: 'install-debian.yml'
+    when: ansible_os_family == 'Debian'
 
-- name: Enable systemd-networkd
-  systemd:
-    name: systemd-networkd
-    state: started
-    enabled: yes
+  - name: Enable systemd-networkd
+    systemd:
+      name: systemd-networkd
+      state: started
+      enabled: yes
 
-- name: Enable systemd-networkd-wait-online.service
-  systemd:
-    name: systemd-networkd-wait-online.service
-    enabled: yes
+  - name: Enable systemd-networkd-wait-online.service
+    systemd:
+      name: systemd-networkd-wait-online.service
+      enabled: yes
 
-- name: Make sure NetworkManager doesn't fuck it up
-  template:
-    src: wg-unmanaged.conf.j2
-    dest: "/etc/NetworkManager/conf.d/{{wireguard_interface}}_unmanaged.conf"
-  when: networkmanager
+  - name: Make sure NetworkManager doesn't fuck it up
+    template:
+      src: wg-unmanaged.conf.j2
+      dest: "/etc/NetworkManager/conf.d/{{wireguard_interface}}_unmanaged.conf"
+    when: networkmanager
 
-- name: Create systemd-networkd directory
-  file:
-    state: directory
-    path: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d"
-    mode: "0750"
-    owner: root
-    group: systemd-network
-  when: am_wireguard_server
+  - name: Create systemd-networkd directory
+    file:
+      state: directory
+      path: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d"
+      mode: "0750"
+      owner: root
+      group: systemd-network
+    when: am_wireguard_server
+    become: yes
+
+  - set_fact:
+      wg_config_template: "{{ 'wg-server' if am_wireguard_server else 'wg-client' }}"
+
+  - name: "Create wireguard systemd-networkd configuration"
+    template:
+      src: "{{ wg_config_template }}.{{ item }}.j2"
+      dest: "/etc/systemd/network/{{ wireguard_interface }}.{{ item }}"
+      mode: "0640"
+      owner: root
+      group: systemd-network
+    with_items:
+      - network
+      - netdev
+    notify:
+      - reload systemd-networkd
+
+  - name: "Create client configuration files"
+    template:
+      src: "wg-peer.conf.j2"
+      dest: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/{{ item }}.conf"
+      mode: "0640"
+      owner: root
+      group: systemd-network
+    become: yes
+    vars:
+      wireguard_public_key: "{{ hostvars[item]['wireguard_public_key'] }}"
+      wireguard_preshared_key: "{{ hostvars[item]['wireguard_preshared_key'] }}"
+      wireguard_client_ip: "{{ hostvars[item]['wireguard_client_ip'] }}"
+      wireguard_client_ipv6: "{{ hostvars[item]['wireguard_client_ipv6'] }}"
+    with_items: "{{ groups['vpn'] }}"
+    when: "am_wireguard_server and item != inventory_hostname"
+    notify:
+      - reload systemd-networkd
+
+  - name: "Find unknown VPN definitions"
+    find:
+      paths:
+        - "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/"
+      hidden: yes
+      patterns:
+        - "*.conf"
+      excludes: "{{ groups['vpn']|map('regex_replace', '$', '.conf')|list }}"
+    when: am_wireguard_server
+    register: found_files
+
+  - debug:
+      msg: "Going to delete {{ item['path'] }}!"
+    with_items: "{{ found_files.files|default([]) }}"
+
+  - name: "Delete found unknown VPN definitions"
+    file:
+      path: "{{ item['path'] }}"
+      state: absent
+    with_items: "{{ found_files.files|default([]) }}"
   become: yes
-
-- set_fact:
-    wg_config_template: "{{ 'wg-server' if am_wireguard_server else 'wg-client' }}"
-
-- name: "Create wireguard systemd-networkd configuration"
-  template:
-    src: "{{ wg_config_template }}.{{ item }}.j2"
-    dest: "/etc/systemd/network/{{ wireguard_interface }}.{{ item }}"
-    mode: "0640"
-    owner: root
-    group: systemd-network
-  with_items:
-    - network
-    - netdev
-  notify:
-    - reload systemd-networkd
-
-- name: "Create client configuration files"
-  template:
-    src: "wg-peer.conf.j2"
-    dest: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/{{ item }}.conf"
-    mode: "0640"
-    owner: root
-    group: systemd-network
-  become: yes
-  vars:
-    wireguard_public_key: "{{ hostvars[item]['wireguard_public_key'] }}"
-    wireguard_preshared_key: "{{ hostvars[item]['wireguard_preshared_key'] }}"
-    wireguard_client_ip: "{{ hostvars[item]['wireguard_client_ip'] }}"
-    wireguard_client_ipv6: "{{ hostvars[item]['wireguard_client_ipv6'] }}"
-  with_items: "{{ groups['vpn'] }}"
-  when: "am_wireguard_server and item != inventory_hostname"
-  notify:
-    - reload systemd-networkd
-
-- name: "Find unknown VPN definitions"
-  find:
-    paths:
-      - "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/"
-    hidden: yes
-    patterns:
-      - "*.conf"
-    excludes: "{{ groups['vpn']|map('regex_replace', '$', '.conf')|list }}"
-  when: am_wireguard_server
-  register: found_files
-
-- debug:
-    msg: "Going to delete {{ item['path'] }}!"
-  with_items: "{{ found_files.files|default([]) }}"
-
-- name: "Delete found unknown VPN definitions"
-  file:
-    path: "{{ item['path'] }}"
-    state: absent
-  with_items: "{{ found_files.files|default([]) }}"
+  tags:
+    - vpn

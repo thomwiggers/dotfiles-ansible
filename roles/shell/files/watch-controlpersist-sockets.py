@@ -14,8 +14,9 @@ def active_connections_changed(client, event):
         os.system(command)
         try:
             os.remove(sock)
-        except:
+        except Exception:
             pass
+
 
 if __name__ == "__main__":
     from gi.repository import GLib, NMClient

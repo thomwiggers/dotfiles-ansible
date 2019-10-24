@@ -15,8 +15,8 @@ lethe
 styx
 cocytus
 oceanus
-sandor.cs.ru.nl
-lilo6.science.ru.nl
+sandor
+lilo
 
 # machines with a battery
 [battery]
@@ -28,16 +28,13 @@ oceanus
 lethe
 styx
 oceanus
-lilo5.science.ru.nl
+lilo
 
 [remote_shells]
-lilo5.science.ru.nl
-sandor.cs.ru.nl
+lilo
+sandor
+archeron
 
 [vpn]
 oceanus
 archeron
-
-[vagrant]
-servertest.local host_key_checking=false
-clienttest.local

@@ -1,9 +1,0 @@
-# vim: set ts=4 sw=2 tw=0 et :
----
-
-mpd_host: ~
-has_battery: no
-no_lock_suspend: no
-networkmanager: no
-autorandr: no
-nitrogen: no

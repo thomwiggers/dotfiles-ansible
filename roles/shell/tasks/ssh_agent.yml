@@ -27,7 +27,7 @@
   when: ansible_service_mgr == "systemd" and networkmanager
 
 - name: Install SSH controlpersist script
-  copy: 
+  copy:
     src: watch-controlpersist-sockets.py
     dest: "{{ ansible_user_dir }}/.local/lib/"
     mode: 0755
@@ -42,4 +42,3 @@
     name: ssh-watch-controlpersist.service
     state: started
   when: ansible_service_mgr == "systemd" and networkmanager
-  

@@ -2,7 +2,7 @@
 
 - name: Install powerline
   pacman:
-    name: 
+    name:
       - powerline
       - powerline-vim
     state: present
