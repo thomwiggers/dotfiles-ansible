@@ -9,6 +9,4 @@
     - shell
     - gnupg
     - git
-    - ncmpcpp
-    - i3
     - vim

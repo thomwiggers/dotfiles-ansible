@@ -19,7 +19,3 @@
     - gnupg
     - git
     - vim
-
-- hosts: desktop
-  roles:
-    - i3
