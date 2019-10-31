@@ -47,6 +47,7 @@
       mode: "0640"
       owner: root
       group: systemd-network
+    no_log: True
     with_items:
       - network
       - netdev
@@ -60,6 +61,7 @@
       mode: "0640"
       owner: root
       group: systemd-network
+    no_log: True
     become: yes
     vars:
       wireguard_public_key: "{{ hostvars[item]['wireguard_public_key'] }}"
@@ -71,6 +73,28 @@
     notify:
       - reload systemd-networkd
 
+  - name: "Setup supplemental client configuration files"
+    template:
+      src: "wg-peer.conf.j2"
+      dest: "/etc/systemd/network/{{ wireguard_interface }}.netdev.d/{{ item.name }}.conf"
+      mode: "0640"
+      owner: root
+      group: systemd-network
+    become: yes
+    vars:
+      wireguard_public_key: "{{ item.public_key }}"
+      wireguard_preshared_key: "{{ item.preshared_key }}"
+      wireguard_client_ip: "{{ item.client_ip }}"
+      wireguard_client_ipv6: "{{ item.client_ipv6 }}"
+    no_log: True
+    with_items: "{{ extra_vpn_clients }}"
+    when: "am_wireguard_server and item != inventory_hostname"
+    tags:
+      - setup_extra_clients
+    notify:
+      - reload systemd-networkd
+
+
   - name: "Find unknown VPN definitions"
     find:
       paths:
@@ -78,7 +102,7 @@
       hidden: yes
       patterns:
         - "*.conf"
-      excludes: "{{ groups['vpn']|map('regex_replace', '$', '.conf')|list }}"
+      excludes: "{{ (groups['vpn']+(extra_vpn_clients|map(attribute='name')|list))|map('regex_replace', '$', '.conf')|list }}"
     when: am_wireguard_server
     register: found_files
 
