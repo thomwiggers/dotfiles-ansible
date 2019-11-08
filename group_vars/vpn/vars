@@ -16,3 +16,8 @@ extra_vpn_clients:
     preshared_key: "EqBwy1FVZsxlwtGnhrMREt5xv8HlOqKujuFRV63IMr4="
     client_ip: "10.20.0.201"
     client_ipv6: "2a01:4f8:231:3ac7:1337:1000::201/124"
+  - name: GalaxyS9
+    public_key: "Xqx9OzbkmM3GG7yLeBRIOsI+1US2/T9jeiOmCLM2vC4="
+    preshared_key: "O5CbmN54ERbfW77U57GzaE6Ph01vpHaWREhnNi3u1HQ="
+    client_ip: "10.20.0.202"
+    client_ipv6: "2a01:4f8:231:3ac7:1337:1000::202/124"
