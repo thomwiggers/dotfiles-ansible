@@ -6,3 +6,5 @@ ansible_host: archeron.rded.nl
 am_wireguard_server: yes
 wireguard_public_key: "UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo="
 wireguard_private_key: "{{ archeron_wireguard_private_key }}"
+wireguard_client_ip: "10.20.0.1"
+wireguard_client_ipv6: "2a01:4f8:231:3ac7:1337:1000::1"

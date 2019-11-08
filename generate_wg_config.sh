@@ -30,18 +30,19 @@ psk="$(wg genpsk)"
 
 allowed_ips="10.20.0.0/24, 2a01:4f8:231:3ac7:1337:1000::/96"
 
-qrencode -t ansiutf8 <<EOF
-[Interface]
-Address = $client_ipv4
-PrivateKey = $private_key
-
-[Peer]
-PublicKey = $server_public
-PresharedKey = $psk
-AllowedIPs = $allowed_ips
-Endpoint = archeron.rded.nl:51820
-PersistentKeepalive = 2500
-EOF
+# Disabled until we re-add adding clients that aren't setup with ansible
+#qrencode -t ansiutf8 <<EOF
+#[Interface]
+#Address = $client_ipv4
+#PrivateKey = $private_key
+#
+#[Peer]
+#PublicKey = $server_public
+#PresharedKey = $psk
+#AllowedIPs = $allowed_ips
+#Endpoint = archeron.rded.nl:51820
+#PersistentKeepalive = 2500
+#EOF
 
 tee clients.txt <<EOF
 public_key: "$public_key"

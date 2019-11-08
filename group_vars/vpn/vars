@@ -1,5 +1,7 @@
 ---
 
+vpn_dns_zone: "wg.rded.nl"
+
 wireguard_server:
   public_key: "UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo="
   network_range: 10.20.0.0/24

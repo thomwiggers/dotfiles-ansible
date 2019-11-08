@@ -115,6 +115,26 @@
       path: "{{ item['path'] }}"
       state: absent
     with_items: "{{ found_files.files|default([]) }}"
+
   become: yes
   tags:
     - vpn
+
+- name: Add DNS record in VPN zone
+  cloudflare_dns:
+    account_api_token: "{{ cloudflare_api_token }}"
+    account_email: "{{ cloudflare_api_email }}"
+    zone: "{{ cloudflare_zone }}"
+    record: "{{ inventory_hostname }}.{{ vpn_dns_zone }}"
+    solo: yes
+    state: present
+    type: "{{ item.type }}"
+    value: "{{ item.address }}"
+  loop:
+    - type: "AAAA"
+      address: "{{ wireguard_client_ipv6 }}"
+    - type: "A"
+      address: "{{ wireguard_client_ip }}"
+  tags:
+    - vpn
+    - dns
