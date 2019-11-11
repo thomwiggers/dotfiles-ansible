@@ -132,7 +132,7 @@
     value: "{{ item.address }}"
   loop:
     - type: "AAAA"
-      address: "{{ wireguard_client_ipv6 }}"
+      address: "{{ wireguard_client_ipv6|regex_replace('/\\d+$', '') }}"
     - type: "A"
       address: "{{ wireguard_client_ip }}"
   tags:
