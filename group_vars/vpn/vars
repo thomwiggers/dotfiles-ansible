@@ -23,3 +23,9 @@ extra_vpn_clients:
     preshared_key: "O5CbmN54ERbfW77U57GzaE6Ph01vpHaWREhnNi3u1HQ="
     client_ip: "10.20.0.202"
     client_ipv6: "2a01:4f8:231:3ac7:1337:1000::202/124"
+# New VPN client
+  - name: wouter
+    public_key: UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo=
+    preshared_key: DcSF3SCubb3sxwTwkZdmR4hFm+jQ6KIB0cbVzw91Qbk=
+    client_ip: 10.20.0.220
+    client_ipv6: 2a01:4f8:231:3ac7:1337:1000::220/124
