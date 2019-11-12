@@ -13,13 +13,6 @@ function restic-backup {
         --exclude "/home/thom/Nextcloud" \
         --exclude "/home/thom/Videos" \
         --exclude "/home/thom/.*" \
-        --exclude-if-present ".restic-ignore" \
-        --exclude-caches \
-        $@
-
-    restic \
-        --option b2.connections=10 \
-        backup \
         "/home/thom/.gnupg" \
         "/home/thom/.ssh" \
         "/home/thom/.password-store" \
@@ -27,6 +20,7 @@ function restic-backup {
         "/home/thom/.config" \
         --exclude "/home/thom/.config/chromium" \
         --exclude-if-present ".rustc_info.json" \
+        --exclude-if-present ".restic-ignore" \
         --exclude-caches \
         $@
 }
