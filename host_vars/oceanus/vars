@@ -1,6 +1,8 @@
 ---
+ansible_user: thom
+use_sudo: yes
+
 networkmanager: yes
-autorandr: no
 ansible_become_pass: "{{ oceanus_sudo_password }}"
 
 # restic settings

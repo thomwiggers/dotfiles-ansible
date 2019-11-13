@@ -31,5 +31,8 @@
     mode: 0640
 
 - name: Set up shell
-  command: "chsh -s /bin/zsh"
+  expect:
+    command: "chsh -s /bin/zsh"
+    responses:
+      (?i)password: "{{ ansible_become_pass }}"
   when: ansible_user_shell != "/bin/zsh"

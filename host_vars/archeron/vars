@@ -1,6 +1,8 @@
 ---
-
-ansible_host: archeron.rded.nl
+ansible_user: thom
+use_sudo: yes
+ansible_host: archeron.wg.rded.nl
+ansible_become_pass: "{{ archeron_become_password }}"
 
 # Wireguard
 am_wireguard_server: yes

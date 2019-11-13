@@ -19,7 +19,7 @@
     become: yes
     when: is_desktop|default('false')
 
-  - name: Remove programs marked absent
+  - name: Remove programs
     pacman:
       name: "{{ removed_tools }}"
       state: "absent"

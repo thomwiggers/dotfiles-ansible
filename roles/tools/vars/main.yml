@@ -1,15 +1,12 @@
 # vim: set ts=4 sw=2 tw=0 et :
 ---
 
-# to delete something, first add it with state: absent
-
 # general tools
 tools:
   - ansible
   - base-devel
   - bat
   - biber
-  - ccid
   - cowsay
   - curl
   - fortune-mod
@@ -17,10 +14,7 @@ tools:
   - htop
   - jq
   - nmap
-  - ntfs-3g
   - openbsd-netcat
-  - opensc
-  - openvpn
   - p7zip
   - python
   - python2
@@ -49,6 +43,7 @@ tools_desktop:
   - noto-fonts
   - noto-fonts-cjk
   - noto-fonts-emoji
+  - ntfs-3g
   - playerctl
   - thunderbird
   - vlc
@@ -56,3 +51,4 @@ tools_desktop:
 
 removed_tools:
   - keepassx2
+  - openvpn

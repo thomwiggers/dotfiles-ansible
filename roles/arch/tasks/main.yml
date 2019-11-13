@@ -17,6 +17,23 @@
     loop:
       - paccache.hook
       - reflector.hook
+
+  - name: Add key to Pacman
+    command: pacman-key --recv-keys 915D4ED34871E82F
+    register: result
+    changed_when: "unchanged" not in result.stdout
+
+  - name: Trust key
+    command: pacman-key --lsign-key 915D4ED34871E82F
+    when: "unchanged" not in result.stdout
+
+  - name: Include pacman configuration
+    copy:
+      src: "pacman.conf"
+      dest: /etc/pacman.conf
+
+
+
   become: yes
   when: ansible_distribution == "Archlinux"
   tags:

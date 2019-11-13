@@ -5,8 +5,3 @@
     name:
       - wireguard-arch
       - wireguard-tools
-
-- name: Install NetworkManager service
-  pacman:
-    name: networkmanager-openvpn
-  when: networkmanager
