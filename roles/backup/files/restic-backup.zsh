@@ -4,6 +4,7 @@ function restic-backup {
         --option b2.connections=10 \
         backup $HOME \
         --exclude "*.o" \
+        --exclude "*.a" \
         --exclude "*.pyc" \
         --exclude "*.sage.py" \
         --exclude "/home/thom/Downloads" \
