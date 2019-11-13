@@ -3,12 +3,14 @@ lethe
 styx
 cocytus
 oceanus
+archeron
 
 [archlinux]
 lethe
 styx
 cocytus
 oceanus
+archeron
 
 [powerline]
 lethe
@@ -17,6 +19,7 @@ cocytus
 oceanus
 sandor
 lilo
+archeron
 
 # machines with a battery
 [battery]

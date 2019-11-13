@@ -19,3 +19,9 @@
     - gnupg
     - git
     - vim
+
+- hosts: vpn
+  become: no
+  roles:
+    - vpn
+    - sshd
