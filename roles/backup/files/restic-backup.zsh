@@ -3,6 +3,7 @@ function restic-backup {
     restic \
         --option b2.connections=10 \
         backup $HOME \
+        --one-file-system \
         --exclude "*.o" \
         --exclude "*.a" \
         --exclude "*.pyc" \
@@ -24,4 +25,14 @@ function restic-backup {
         --exclude-if-present ".restic-ignore" \
         --exclude-caches \
         $@
+
+    restic \
+        --option b2.connections=10 \
+        forget \
+        --keep-monthly 6 \
+        --keep-weekly 4 \
+        --keep-daily 7 \
+        --prune
+
+    restic check
 }
