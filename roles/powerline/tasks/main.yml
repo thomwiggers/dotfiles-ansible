@@ -42,7 +42,7 @@
         name: powerline-daemon.service
         enabled: yes
         daemon_reload: yes
-        user: yes
+        scope: user
       when: ansible_service_mgr == "systemd"
   tags:
     - powerline

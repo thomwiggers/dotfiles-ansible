@@ -32,7 +32,7 @@
 
 - name: Set up shell
   expect:
-    command: "chsh -s /bin/zsh"
+    command: "chsh -s /usr/bin/zsh"
     responses:
       (?i)password: "{{ ansible_become_pass }}"
   when: ansible_user_shell != "/bin/zsh"

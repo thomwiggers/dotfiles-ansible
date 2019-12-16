@@ -1,0 +1,15 @@
+- hosts: archlinux
+  become: yes
+  tasks:
+    - name: Run pacman -Syu
+      pacman:
+        update_cache: yes
+        upgrade: yes
+    - name: Figure out local hostname
+      local_action: command hostname
+      run_once: true
+      become: no
+      register: output
+      changed_when: false
+    - reboot:
+      when: inventory_hostname not in output.stdout

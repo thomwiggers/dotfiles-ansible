@@ -51,4 +51,3 @@ tools_desktop:
 
 removed_tools:
   - keepassx2
-  - openvpn

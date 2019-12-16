@@ -7,3 +7,23 @@
     state: directory
     mode: 0700
     owner: "{{ ansible_user }}"
+
+- name: Install pexpect for expect module on sudo machines (not-Arch)
+  package:
+    name: python3-pexpect
+    state: present
+  become: yes
+  when: use_sudo and ansible_distribution != "Archlinux"
+
+- name: Install pexpect for expect module on sudo machines (Arch)
+  package:
+    name: python-pexpect
+    state: present
+  become: yes
+  when: use_sudo and ansible_distribution == "Archlinux"
+
+- name: Install pexpect with pip on machines without sudo
+  pip:
+    name: pexpect
+    state: present
+  when: not use_sudo

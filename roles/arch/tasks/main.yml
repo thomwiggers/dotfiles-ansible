@@ -5,9 +5,11 @@
       state: directory
       path: /etc/pacman.d/hooks
 
-  - name: Make sure pacman-contrib is installed
+  - name: Make sure required packages for hooks are installed
     pacman:
-      name: pacman-contrib
+      name:
+        - pacman-contrib
+        - reflector
       state: present
 
   - name: Insert hooks
