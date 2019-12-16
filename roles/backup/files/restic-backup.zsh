@@ -3,6 +3,7 @@ function restic-backup {
     restic \
         --option b2.connections=10 \
         backup $HOME \
+        --tag "${RESTIC_TAG:-manual}" \
         --one-file-system \
         --exclude "*.o" \
         --exclude "*.a" \

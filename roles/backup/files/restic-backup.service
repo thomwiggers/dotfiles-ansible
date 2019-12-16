@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily backups with restic
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/lib/do_backup.zsh
+Nice=10
