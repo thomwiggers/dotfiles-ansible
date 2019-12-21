@@ -8,12 +8,11 @@
 
   - name: Obtain keyfile from this machine
     openssh_keypair:
-      path: "{{ ansible_user_dir }}/.ssh/id_rsa"
-      type: "rsa"
-      size: 2048
-      #owner: "{{ ansible_user }}"
-      #mode: "0600"
-      #comment: "{{ ansible_user }}@{{ inventory_hostname }} Created by ansible"
+      path: "{{ ansible_user_dir }}/.ssh/id_ed25519"
+      type: "ed25519"
+      owner: "{{ ansible_user }}"
+      mode: "0600"
+      comment: "{{ ansible_user }}@{{ inventory_hostname }} Created by ansible"
     register: sshkey
     tags:
       - bla
