@@ -95,12 +95,10 @@ alias la='ls -l --almost-all --human-readable'
 alias l='ls'
 alias sl='ls'
 alias cp='cp --reflink=auto'
-alias irc='ssh irc -t tmux a'
-alias mirc='mosh irc tmux a'
+alias irc='ssh irc@archeron.rded.nl -t tmux -L weechat -2u attach'
+alias mirc='mosh irc@archeron.rded.nl tmux -L weechat -2u attach'
 alias clm='$HOME/clean/bin/clm -I $HOME/clean/lib/StdEnv/ -I $HOME/clean/lib/Dynamics/'
-alias graderand="cd ./\$(grep -lr 'Needs Grading' s*/s*.txt | sort -R | cut -d'/' -f1 | head -1)"
-alias ccat="pygmentize -g"
-alias tmux="tmux -2"
+alias tmux="tmux -2u"
 alias gdb="gdb -q"
 alias gp="gp -q"
 
