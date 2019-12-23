@@ -11,7 +11,7 @@
 
 - name: Enable systemd SSH agent service
   systemd:
-    user: yes
+    scope: user
     enabled: yes
     daemon-reload: yes
     name: ssh-agent.service
@@ -36,7 +36,7 @@
 
 - name: Enable systemd service for controlpersist
   systemd:
-    user: yes
+    scope: user
     enabled: yes
     daemon-reload: yes
     name: ssh-watch-controlpersist.service
