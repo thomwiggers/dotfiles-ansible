@@ -1,0 +1,17 @@
+- block:
+    - name: Install caddy
+      package:
+        name:
+          - caddy
+        state: present
+      become: yes
+
+    - name:
+      template:
+        src: cloudflare-config.zsh.j2
+        dest: "~/.zsh/lib/cloudflare-api.zsh"
+        mode: "0700"
+      become_user: "{{ ansible_user }}"
+  tags:
+    - cloudflare
+    - caddy

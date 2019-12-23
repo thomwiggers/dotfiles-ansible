@@ -119,7 +119,7 @@
   tags:
     - vpn
 
-- name: Add DNS record in VPN zone
+- name: Add DNS record in VPN zone for hostname
   cloudflare_dns:
     account_api_token: "{{ cloudflare_api_token }}"
     account_email: "{{ cloudflare_api_email }}"
@@ -137,3 +137,21 @@
   tags:
     - vpn
     - dns
+
+- name: Add asterix DNS record in VPN zone for hostname
+  cloudflare_dns:
+    account_api_token: "{{ cloudflare_api_token }}"
+    account_email: "{{ cloudflare_api_email }}"
+    zone: "{{ cloudflare_zone }}"
+    record: "*.{{ inventory_hostname }}.{{ vpn_dns_zone }}"
+    solo: yes
+    state: present
+    type: "CNAME"
+    value: "{{ inventory_hostname }}.{{ vpn_dns_zone }}"
+  tags:
+    - vpn
+    - dns
+
+- name: Install Caddy
+  import_tasks: 'caddy.yml'
+  when: ansible_distribution == "Archlinux"
