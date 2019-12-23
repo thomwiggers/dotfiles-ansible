@@ -8,7 +8,7 @@
       dest: "/home/{{ ansible_user }}/.{{item}}"
       mode: 0644
       owner: "{{ ansible_user }}"
-    with_items:
+    loop:
       - gitconfig
       - gitattributes
       - gitignore

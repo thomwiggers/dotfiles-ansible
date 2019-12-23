@@ -11,7 +11,7 @@
     file:
       state: directory
       dest: "{{ ansible_user_dir }}/{{ item }}"
-    with_items:
+    loop:
       - ".vim"
       - ".vim/undo"
       - ".vim/swaps"

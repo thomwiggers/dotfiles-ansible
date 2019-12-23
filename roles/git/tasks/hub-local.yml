@@ -17,7 +17,7 @@
   file:
     state: directory
     path: "{{ ansible_user_dir }}/{{ item }}"
-  with_items:
+  loop:
     - bin
     - .zsh/completion
 
@@ -29,7 +29,7 @@
     owner: "{{ ansible_user }}"
     mode: "{{ item.mode|default('0644') }}"
     force: yes
-  with_items:
+  loop:
     - src: bin/hub
       dest: bin/hub
       mode: "0755"

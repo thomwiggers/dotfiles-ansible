@@ -15,7 +15,7 @@
       dest: "{{ ansible_user_dir }}/.gnupg/{{ item }}"
       mode: 0644
       owner: "{{ ansible_user }}"
-    with_items:
+    loop:
       - gpg.conf
       - gpg-agent.conf
 

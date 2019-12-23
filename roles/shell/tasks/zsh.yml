@@ -20,7 +20,7 @@
   file:
     state: directory
     path: "{{ ansible_user_dir }}/{{ item }}"
-  with_items:
+  loop:
     - ".zsh"
     - ".zsh/completions"
 
