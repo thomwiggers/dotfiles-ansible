@@ -24,6 +24,13 @@
     - git
     - vim
 
+- hosts: distcc
+  become: yes
+  roles:
+    - distcc_armv7
+  tags:
+    - distcc
+
 - hosts: vpn
   become: no
   roles:

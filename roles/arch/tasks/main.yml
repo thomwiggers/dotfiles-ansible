@@ -1,43 +1,73 @@
 
 - block:
+  - name: Place locale.gen
+    copy:
+      src: "locale.gen"
+      dest: "/etc/locale.gen"
+    register: locale_changed
+
+  - name: Update locales
+    command: locale-gen
+    when: locale_changed.changed
+
+  - name: Place locale.conf
+    copy:
+      src: "locale.conf"
+      dest: "/etc/locale.conf"
+
   - name: Create pacman hooks folder
     file:
       state: directory
       path: /etc/pacman.d/hooks
 
-  - name: Make sure required packages for hooks are installed
-    pacman:
-      name:
-        - pacman-contrib
-        - reflector
-      state: present
+  - block:
+    - name: Make sure required packages for paccache hook are installed
+      pacman:
+        name:
+          - pacman-contrib
+        state: present
 
-  - name: Insert hooks
-    copy:
-      src: "{{ item }}"
-      dest: /etc/pacman.d/hooks
-    loop:
-      - paccache.hook
-      - reflector.hook
+    - name: Insert hook for paccache
+      copy:
+        src: "paccache.hook"
+        dest: /etc/pacman.d/hooks
+      loop:
+    tags:
+      - paccache
+
+  - block:
+    - name: Make sure required packages for reflector hook are installed
+      pacman:
+        name:
+          - reflector
+        state: present
+
+    - name: Insert hooks
+      copy:
+        src: "reflector.hook"
+        dest: /etc/pacman.d/hooks
+    tags:
+      - reflector
+    when: ansible_machine == "x86_64"
 
   - name: Add key to Pacman
     command: pacman-key --recv-keys 915D4ED34871E82F
     register: result
-    changed_when: not "unchanged" in result.stdout
+    changed_when: not "unchanged" in result.stderr
 
   - name: Trust key
     command: pacman-key --lsign-key 915D4ED34871E82F
-    when: not "unchanged" in result.stdout
+    when: not "unchanged" in result.stderr
 
   - name: Include pacman configuration
     copy:
-      src: "pacman.conf"
+      src: "pacman{% if ansible_machine == 'armv7l' %}_armv7{% endif %}.conf"
       dest: /etc/pacman.conf
 
   - name: Set up makepkg configuration
-    copy:
-      src: "makepkg.conf"
-      dest: /etc/makepkg.conf
+    template:
+      src: "makepkg{% if ansible_machine == 'armv7l' %}_armv7{% endif %}.conf"
+      dest: "/etc/makepkg.conf"
 
   become: yes
   when: ansible_distribution == "Archlinux"

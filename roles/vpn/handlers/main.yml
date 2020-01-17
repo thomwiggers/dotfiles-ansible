@@ -4,3 +4,4 @@
   systemd:
     name: "systemd-networkd"
     state: restarted
+  become: yes

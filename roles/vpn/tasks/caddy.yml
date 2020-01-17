@@ -6,7 +6,7 @@
         state: present
       become: yes
 
-    - name:
+    - name: Put cloudflare configuration in place
       template:
         src: cloudflare-config.zsh.j2
         dest: "~/.zsh/lib/cloudflare-api.zsh"

@@ -1,1 +1,2 @@
 use_sudo: no
+vim_package: vim

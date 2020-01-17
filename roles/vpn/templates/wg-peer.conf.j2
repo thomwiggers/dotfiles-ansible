@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 [WireGuardPeer]
 PublicKey = {{ wireguard_public_key | mandatory }}
 PresharedKey = {{ wireguard_preshared_key | mandatory }}

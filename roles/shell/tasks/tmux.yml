@@ -25,6 +25,10 @@
   command: "tmux new-session -d {{ ansible_user_dir }}/.tmux/plugins/tpm/bin/install_plugins"
   when: tmuxconfig.changed
 
+- name: Update tmux plugins
+  command: "tmux new-session -d {{ ansible_user_dir }}/.tmux/plugins/tpm/bin/update_plugins all"
+  when: tmuxconfig.changed
+
 - name: clean up tmux plugins
   command: "tmux new-session -d {{ ansible_user_dir }}/.tmux/plugins/tpm/bin/clean_plugins"
   when: tmuxconfig.changed

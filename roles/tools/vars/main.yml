@@ -10,6 +10,7 @@ tools:
   - cowsay
   - curl
   - fortune-mod
+  - git
   - gnupg
   - htop
   - jq

@@ -17,7 +17,14 @@
       name: "{{ tools_desktop }}"
       state: "present"
     become: yes
-    when: is_desktop|default('false')
+    when: is_desktop|default(false)
+
+  - name: Remove tools for desktop use from servers
+    pacman:
+      name: "{{ tools_desktop }}"
+      state: absent
+    become: yes
+    when: not (is_desktop|default(false))
 
   - name: Remove programs
     pacman:

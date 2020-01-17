@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 export CADDY_DOMAIN="{{ inventory_hostname }}.{{ vpn_dns_zone }}"
 export CLOUDFLARE_EMAIL="{{ cloudflare_api_email }}"
 export CLOUDFLARE_API_KEY="{{ cloudflare_api_token }}"

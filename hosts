@@ -4,13 +4,15 @@ styx
 cocytus
 oceanus
 archeron
+ansluta
 
 [archlinux]
-lethe
-styx
-cocytus
-oceanus
+ansluta
 archeron
+cocytus
+lethe
+oceanus
+styx
 
 [powerline]
 lethe
@@ -20,6 +22,11 @@ oceanus
 sandor
 lilo
 archeron
+ansluta
+
+[distcc]
+oceanus
+ansluta
 
 # machines with a battery
 [battery]
@@ -37,9 +44,11 @@ lilo
 lilo
 sandor
 archeron
+ansluta
 
 [vpn]
 oceanus
 archeron
 cocytus
 styx
+ansluta

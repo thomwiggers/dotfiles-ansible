@@ -90,7 +90,7 @@ else
 
 	# Wireguard
 	${host}_wireguard_private_key: "$private_key"
-	${host}_wireguard_preshared_key: "$preshared_key"
+	${host}_wireguard_preshared_key: "$psk"
 	EOF
     )
     echo "$vault" | ansible-vault encrypt --output "host_vars/$host/vault" -
