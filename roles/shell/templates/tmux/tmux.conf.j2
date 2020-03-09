@@ -12,5 +12,8 @@ set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-pain-control'
 
+set -g history-file ~/.tmux/tmux_history
+set-option -g history-limit 10000
+
 # Initialize tmux plugin manager
 run -b '~/.tmux/plugins/tpm/tpm'

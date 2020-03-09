@@ -1,0 +1,13 @@
+[Unit]
+Description=A distributed C/C++ compiler (ARMv7)
+Documentation=man:distccd(1)
+After=network.target
+
+[Service]
+User=nobody
+EnvironmentFile=/etc/conf.d/distccd
+Environment="PATH=/opt/x-tools7h/arm-unknown-linux-gnueabihf/bin"
+ExecStart=/usr/bin/distccd --user nobody --no-detach --daemon $DISTCC_ARGS
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,80 @@
+---
+# For x86 machines
+- block:
+  - name: Download x-tools
+    get_url:
+      url: https://archlinuxarm.org/builder/xtools/x-tools7h.tar.xz
+      dest: /opt/x-tools7h.tar.xz
+      checksum: md5:856aa3e81afda734deff8fb2848d5760
+
+  - name: Extract x-tools
+    unarchive:
+      src: /opt/x-tools7h.tar.xz
+      dest: /opt/
+    notify: restart distccd_armv7
+
+  - name: Install distcc
+    pacman:
+      name:
+        - distcc
+
+  - name: Install distcc config
+    template:
+      src: distccd.j2
+      dest: /etc/conf.d/distccd
+    notify:
+      - restart distccd_armv7
+
+  - name: Install distccd armv7 cross service
+    copy:
+      src: distccd_armv7.service
+      dest: /etc/systemd/system/distccd_armv7.service
+    notify:
+      - restart distccd_armv7
+
+  - name: Enable and start distccd armv7 service
+    systemd:
+      name: distccd_armv7.service
+      enabled: yes
+      state: started
+  when: ansible_machine == "x86_64"
+  tags:
+    - distcc
+
+# for the distcc hosts: the ARMv7 boxes
+- block:
+  - name: Install distcc
+    pacman:
+      name: distcc
+    notify:
+      - restart distccd
+
+  - name: Install distcc hosts file
+    template:
+      src: distcc_hosts.j2
+      dest: /etc/distcc/hosts
+    notify:
+      - restart distccd
+
+  - name: Enable and start distccd service
+    systemd:
+      name: distccd
+      enabled: yes
+      state: started
+  when: ansible_machine == "armv7l"
+  tags:
+    - distcc
+
+- block:
+  - name: Enable compilers for ARM
+    file:
+      path: "/usr/lib/distcc/{{ item }}"
+      src: /usr/bin/distcc
+      state: link
+    loop:
+      - "armv7l-unknown-linux-gnueabihf-gcc"
+      - "armv7l-unknown-linux-gnueabihf-g++"
+      - "armv7l-unknown-linux-gnueabihf-cc"
+      - "armv7l-unknown-linux-gnueabihf-cpp"
+  tags:
+    - distcc

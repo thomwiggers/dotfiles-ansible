@@ -1,5 +1,6 @@
 ---
 ansible_user: thom
+ansible_host: styx.wg.rded.nl
 use_sudo: yes
 
 networkmanager: yes

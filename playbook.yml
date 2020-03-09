@@ -4,6 +4,7 @@
 - hosts: all
   roles:
     - common
+    - ssh_client
 
 - hosts: own_machines
   become: no

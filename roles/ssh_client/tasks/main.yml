@@ -1,29 +1,8 @@
 - block:
-  - name: "Create .ssh dir"
-    file:
-      state: directory
-      path: "{{ ansible_user_dir }}/.ssh"
-      owner: "{{ ansible_user }}"
-      mode: "0700"
+  - name: Add SSH key for termius
+    authorized_key:
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyyLu1Ejp68N0+hZBkVCxJ9+nLAWaHEhQiUmf/2lgQI Termius installed by Ansible"
+      user: "{{ ansible_user }}"
 
-  - name: Obtain keyfile from this machine
-    openssh_keypair:
-      path: "{{ ansible_user_dir }}/.ssh/id_ed25519"
-      type: "ed25519"
-      owner: "{{ ansible_user }}"
-      mode: "0600"
-      comment: "{{ ansible_user }}@{{ inventory_hostname }} Created by ansible"
-    register: sshkey
-    tags:
-      - bla
-
-  - name: Write public key to other machines
-    debug:
-      msg:
-        - "{{ groups['all'] }}"
-        - "{{ sshkey.public_key }}"
-    delegate_to: "{{ item }}"
-    loop: "{{ groups['remote_shells'] }}"
-    when: sshkey.changed
   tags:
     - ssh

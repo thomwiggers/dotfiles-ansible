@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+# --- /etc/distcc/hosts -----------------------
+# See the "Hosts Specification" section of
+# "man distcc" for the format of this file.
+#
+{% for name in groups['distcc'] %}
+{% if name != inventory_hostname %}
+{{ hostvars[name]['wireguard_client_ip'] }}/6
+{% endif %}
+{% endfor %}

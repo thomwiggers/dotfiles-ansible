@@ -1,0 +1,13 @@
+---
+
+- name: "restart distccd_armv7"
+  service:
+    name: "distccd_armv7"
+    state: "restarted"
+  become: yes
+
+- name: "restart distccd"
+  service:
+    name: "distccd"
+    state: "restarted"
+  become: yes
