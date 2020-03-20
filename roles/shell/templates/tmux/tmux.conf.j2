@@ -2,7 +2,7 @@
 set -g default-terminal "screen-256color"
 
 {% if powerline_enabled %}
-source "{{ powerline_site_packages_path }}/bindings/tmux/powerline.conf"
+source "{{ powerline_lib_dir }}/bindings/tmux/powerline.conf"
 {% endif %}
 
 # list of plugins

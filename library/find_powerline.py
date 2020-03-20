@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os.path
+from pathlib import Path
 
 from ansible.module_utils.basic import AnsibleModule
 
@@ -15,9 +15,11 @@ def main():
     except ImportError:
         module.fail_json(msg="Powerline isn't installed or importable?")
 
+    powerline_lib_path = Path(powerline.__file__)
+
     module.exit_json(changed=False, ansible_facts={
-        'powerline_site_packages_path':
-            os.path.dirname(powerline.__file__)
+        'powerline_lib_dir': powerline_lib_path.parent,
+        'powerline_site_packages_dir': powerline_lib_path.parent.parent,
     })
 
 

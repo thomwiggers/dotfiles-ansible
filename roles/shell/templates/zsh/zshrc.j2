@@ -83,8 +83,8 @@ if [ -e "$HOME/.dircolors" ]; then
 fi
 
 {% if powerline_enabled|default(0) %}
-if [ -e "{{ powerline_site_packages_path }}/bindings/zsh/powerline.zsh" ]; then
-    source "{{ powerline_site_packages_path }}/bindings/zsh/powerline.zsh"
+if [ -e "{{ powerline_lib_dir }}/bindings/zsh/powerline.zsh" ]; then
+    source "{{ powerline_lib_dir }}/bindings/zsh/powerline.zsh"
 fi
 {% endif %}
 
