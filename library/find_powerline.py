@@ -18,8 +18,8 @@ def main():
     powerline_lib_path = Path(powerline.__file__)
 
     module.exit_json(changed=False, ansible_facts={
-        'powerline_lib_dir': powerline_lib_path.parent,
-        'powerline_site_packages_dir': powerline_lib_path.parent.parent,
+        'powerline_lib_dir': str(powerline_lib_path.parent),
+        'powerline_site_packages_dir': str(powerline_lib_path.parent.parent),
     })
 
 

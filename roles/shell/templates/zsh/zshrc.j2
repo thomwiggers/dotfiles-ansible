@@ -32,7 +32,9 @@ export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 {% if ansible_service_mgr == "systemd" and shell_ssh_agent %}
 # SSH Agent with Systemd
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
 {% endif %}
 
 # History

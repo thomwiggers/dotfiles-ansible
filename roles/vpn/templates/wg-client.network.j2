@@ -3,10 +3,10 @@
 Name = {{ wireguard_interface }}
 
 [Network]
-Address = {{ wireguard_client_ip | mandatory }}/32
+Address = {{ wireguard_client_ip | mandatory }}/24
 Address = {{ wireguard_client_ipv6 | mandatory }}
 Domains=wg.rded.nl
-DNS=1.1.1.1
+DNS=10.20.0.1
 
 [Link]
 RequiredForOnline = no

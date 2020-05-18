@@ -1,5 +1,5 @@
 #!/bin/zsh
 
 open() {
-    xdg-open $@ 2> /dev/null & disown
+    xdg-open $@ 2> /dev/null &!
 }

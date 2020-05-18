@@ -1,2 +1,3 @@
 use_sudo: no
 vim_package: vim
+shell_ssh_agent: false

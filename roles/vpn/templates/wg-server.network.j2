@@ -8,3 +8,7 @@ Address = {{ wireguard_server.ipv6 | mandatory }}/96
 
 [Link]
 RequiredForOnline = no
+
+[Network]
+IPForward = yes
+IPMasquerade = ipv4

@@ -1,18 +1,30 @@
+---
 - hosts: archlinux
   become: yes
+  strategy: free
   tasks:
     - name: Run pacman -Syu
       pacman:
         update_cache: yes
         upgrade: yes
+    - name: Run Topgrade for local stuff
+      command: topgrade --only vim gem rustup cargo flutter go pipx stack tlmgr
+      when: ansible_machine != "armv7l"
     - name: Figure out local hostname
       local_action: command hostname
       run_once: true
       become: no
       register: output
       changed_when: false
-    - reboot:
-      when: inventory_hostname not in output.stdout
+    - name: Reboot hosts
+      reboot:
+      when: inventory_hostname not in output.stdout and inventory_hostname != 'archeron'
+
+- hosts: archeron
+  become: yes
+  tasks:
+    - name: Reboot VPN host archeron
+      reboot:
 
 - hosts: archeron
   become: yes
@@ -23,5 +35,17 @@
       loop:
         - "matomo"
         - "nextcloud"
+        - "pi-hole"
+  tags:
+    - docker-update
+
+- hosts: cocytus
+  become: yes
+  tasks:
+    - docker_compose:
+        project_src: "/home/thom/{{ item }}"
+        pull: yes
+      loop:
+        - "pi-hole"
   tags:
     - docker-update

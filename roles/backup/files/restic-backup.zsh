@@ -37,3 +37,8 @@ function restic-backup {
 
     restic check
 }
+
+function restic-unlock {
+    source "$HOME/.local/lib/restic_settings.zsh"
+    restic unlock
+}

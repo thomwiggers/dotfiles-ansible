@@ -18,7 +18,7 @@
     state: directory
     path: "{{ ansible_user_dir }}/{{ item }}"
   loop:
-    - bin
+    - .local/bin
     - .zsh/completion
 
 - name: "Install hub"
@@ -31,7 +31,7 @@
     force: yes
   loop:
     - src: bin/hub
-      dest: bin/hub
+      dest: .local/bin/hub
       mode: "0755"
     - src: etc/hub.zsh_completion
       dest: .zsh/completion/hub
