@@ -1,6 +1,7 @@
 [Unit]
 Description=Daily backups with restic
 After=network.target
+OnFailure=ntfy-send@%n.service
 
 [Service]
 Type=simple
