@@ -29,3 +29,9 @@ extra_vpn_clients:
     preshared_key: DcSF3SCubb3sxwTwkZdmR4hFm+jQ6KIB0cbVzw91Qbk=
     client_ip: 10.20.0.220
     client_ipv6: 2a01:4f8:231:3ac7:1337:1000::220/124
+# New VPN client
+  - name: shadow
+    public_key: Ce9eXi792JJovcJwyC7NO7fKGYDtcZW9BqcEhai8Kjo=
+    preshared_key: LzvKvHHXA4CH8F4MrahiHqBrj0rkmO83i2LaIyNfEl4=
+    client_ip: 10.20.0.240
+    client_ipv6: 2a01:4f8:231:3ac7:1337:1000::240/124
