@@ -1,13 +1,13 @@
 ---
 
-- name: Install DKMS dependencies
+- name: Install DKMS wireguard
   pacman:
     name:
       - linux-raspberrypi-headers
+      - wireguard-dkms
   when: ansible_machine == "armv7l"
 
-- name: Install Wireguard
+- name: Install Wireguard tools
   pacman:
     name:
-      - wireguard-{% if ansible_machine == 'x86_64' %}arch{% else %}dkms{% endif %}
       - wireguard-tools

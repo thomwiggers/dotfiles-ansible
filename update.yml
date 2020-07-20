@@ -1,7 +1,6 @@
 ---
 - hosts: archlinux
   become: yes
-  strategy: free
   tasks:
     - name: Run pacman -Syu
       pacman:

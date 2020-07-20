@@ -84,6 +84,10 @@ Plugin 'cespare/vim-toml'
 " Jinja2
 Plugin 'glench/vim-jinja2-syntax'
 
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -311,4 +315,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-" vim: set ft=vim ts=4 sw=4 tw=78 et :
+" --------------------------------
+" Markdown settings
+" --------------------------------
+
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'csharp=cs', 'rust=rust', 'c=c']
+
+k vim: set ft=vim ts=4 sw=4 tw=78 et :
