@@ -34,17 +34,5 @@
       loop:
         - "matomo"
         - "nextcloud"
-        - "pi-hole"
-  tags:
-    - docker-update
-
-- hosts: cocytus
-  become: yes
-  tasks:
-    - docker_compose:
-        project_src: "/home/thom/{{ item }}"
-        pull: yes
-      loop:
-        - "pi-hole"
   tags:
     - docker-update
