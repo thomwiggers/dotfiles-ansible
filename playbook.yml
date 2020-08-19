@@ -11,6 +11,7 @@
   roles:
     - arch
     - tools
+    - timesyncd
 
 - hosts: powerline
   become: no
@@ -37,3 +38,8 @@
   roles:
     - vpn
     - sshd
+
+- hosts: backup
+  become: no
+  roles:
+    - backup
