@@ -4,6 +4,9 @@
 - hosts: styx
   become: no
   roles:
+    - vpn
+    - sshd
+    - ssh_client
     - arch
     - timesyncd
     - tools
