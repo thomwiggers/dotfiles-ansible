@@ -1,0 +1,6 @@
+---
+ansible_user: thom
+zsh_enabled: true
+ansible_host: ygritte.cs.ru.nl
+
+ansible_become_pass: "{{ ygritte_sudo_password }}"
