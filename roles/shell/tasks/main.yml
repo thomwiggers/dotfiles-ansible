@@ -35,3 +35,4 @@
   copy:
     src: gnome-terminal-server-override.conf
     dest: "{{ ansible_user_dir }}/.config/systemd/user/gnome-terminal-server.service.d/override.conf"
+    mode: "0644"

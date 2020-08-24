@@ -3,6 +3,7 @@ ansible_user: thom
 ansible_host: ansluta.wg.rded.nl
 use_sudo: yes
 ansible_become_pass: "{{ ansluta_become_password }}"
+pacman_architecture: armv7h
 
 # Wireguard
 wireguard_public_key: "CcDUcLjNMrGaLFdDmKec5/ldlFys/AmH7dMmaDO+wSQ="

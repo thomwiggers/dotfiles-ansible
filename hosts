@@ -5,6 +5,7 @@ cocytus
 oceanus
 archeron
 ansluta
+drona    # Pi Zero
 
 [backup]
 oceanus
@@ -27,6 +28,7 @@ lilo
 archeron
 ygritte
 ansluta
+drona    # Pi Zero
 
 [distcc]
 oceanus
@@ -50,6 +52,7 @@ sandor
 archeron
 ansluta
 ygritte
+drona    # Pi Zero
 
 [vpn]
 oceanus
@@ -57,3 +60,4 @@ archeron
 cocytus
 styx
 ansluta
+drona    # Pi Zero

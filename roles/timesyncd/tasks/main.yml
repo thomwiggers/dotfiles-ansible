@@ -3,7 +3,7 @@
 - name: Set up timezone
   file:
     state: link
-    src: /usr/share/zoneinfo/Europe/Amsterdam;
+    src: /usr/share/zoneinfo/Europe/Amsterdam
     dest: /etc/localtime
     force: yes
   become: yes
@@ -15,9 +15,9 @@
   become: yes
 
 - name: Place timesyncd config.
-  file:
+  copy:
     src: "time.nl.conf"
-    path: "/etc/systemd/timesyncd.conf.d/time.nl.conf"
+    dest: "/etc/systemd/timesyncd.conf.d/time.nl.conf"
   become: yes
 
 - name: Enable systemd-timesyncd

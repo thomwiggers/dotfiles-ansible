@@ -5,7 +5,7 @@
     name:
       - linux-raspberrypi-headers
       - wireguard-dkms
-  when: ansible_machine == "armv7l"
+  when: ansible_machine != "x86_64"
 
 - name: Install Wireguard tools
   pacman:

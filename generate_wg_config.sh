@@ -14,10 +14,10 @@ fi
 host="$1"
 ippfx="$2"
 
-client_ipv4="10.20.0.$ippfx"
+client_ipv4="\"10.20.0.$ippfx\""
 client_ipv6="2a01:4f8:231:3ac7:1337:1000::$ippfx/124"
 
-if grep -B4 "$client_ipv4" host_vars/*/vars group_vars/vpn/vars; then
+if grep -B4 -E "$client_ipv4" host_vars/*/vars group_vars/vpn/vars; then
     echo "IP already registered!"
     exit 1
 fi

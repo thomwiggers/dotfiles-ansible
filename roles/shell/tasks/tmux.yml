@@ -19,6 +19,7 @@
   template:
     src: tmux/tmux.conf.j2
     dest: "{{ ansible_user_dir }}/.tmux.conf"
+    mode: "0644"
   register: tmuxconfig
 
 - name: Install tmux plugins

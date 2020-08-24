@@ -19,6 +19,7 @@
     file:
       state: directory
       path: /etc/pacman.d/hooks
+      mode: 0664
 
   - block:
     - name: Make sure required packages for paccache hook are installed
@@ -50,8 +51,13 @@
       - reflector
     when: ansible_machine == "x86_64"
 
+  - name: Copy thomwiggers.gpg
+    copy:
+      src: "thomwiggers.gpg"
+      dest: "{{ working_cache_dir }}/thomwiggers.gpg"
+
   - name: Add key to Pacman
-    command: pacman-key --recv-keys 915D4ED34871E82F
+    command: "pacman-key --add {{ working_cache_dir }}/thomwiggers.gpg"
     register: result
     changed_when: not "unchanged" in result.stderr
 
@@ -60,8 +66,8 @@
     when: not "unchanged" in result.stderr
 
   - name: Include pacman configuration
-    copy:
-      src: "pacman{% if ansible_machine == 'armv7l' %}_armv7{% endif %}.conf"
+    template:
+      src: "pacman.conf.j2"
       dest: /etc/pacman.conf
 
   - name: Set up makepkg configuration

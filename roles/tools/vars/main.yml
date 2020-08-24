@@ -23,13 +23,14 @@ tools:
   - python-tox
   - python-virtualenv
   - python-virtualenvwrapper
+  - python-wheel
+  - python-poetry
   - rsync
   - texlive-most
   - the_silver_searcher
   - tmux
   - unrar
   - wget
-  - pandoc
 
 
 # tools for machines not run headlessly
@@ -47,6 +48,7 @@ tools_desktop:
   - thunderbird
   - vlc
   - xsel
+  - pandoc
 
 removed_tools:
   - keepassx2
