@@ -1,0 +1,23 @@
+---
+
+- block:
+  - name: Install prometheus-node-exporter
+    pacman:
+      name: prometheus-node-exporter
+
+  - name: Copy prometheus-node-exporter config
+    template:
+      src: conf.d_prometheus-node-exporter
+      dest: /etc/conf.d/prometheus-node-exporter
+      mode: 0664
+
+  - systemd:
+      name: prometheus-node-exporter
+      enabled: yes
+      state: started
+
+  become: yes
+  tags:
+    - prometheus
+
+

@@ -1,0 +1,1 @@
+NODE_EXPORTER_ARGS="--web.listen-address=\"{{ ansible_host }}:9100\""

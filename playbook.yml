@@ -12,6 +12,7 @@
     - arch
     - tools
     - timesyncd
+    - prometheus
 
 - hosts: powerline
   become: no
