@@ -20,15 +20,16 @@ setopt MULTIBYTE
 setopt COMBINING_CHARS
 setopt COMPLETE_ALIASES
 
-for f in $HOME/.zsh/lib/*.zsh; do
-    source $f;
-done;
-
 # Editor
 export EDITOR=vim
 
 # Path: add local python packages, ruby
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
+# Load scripts
+for f in $HOME/.zsh/lib/*.zsh; do
+    source $f;
+done
 
 {% if ansible_service_mgr == "systemd" and shell_ssh_agent %}
 # SSH Agent with Systemd
