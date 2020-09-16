@@ -9,6 +9,7 @@
 
   - name: Extract x-tools
     unarchive:
+      remote_src: yes
       src: /opt/x-tools7h.tar.xz
       dest: /opt/
     notify: restart distccd_armv7
