@@ -1,17 +1,23 @@
 - block:
-    - name: Install caddy
+    - name: Remove caddy
       package:
         name:
           - caddy
-        state: present
+        state: absent
       become: yes
 
-    - name: Put cloudflare configuration in place
-      template:
-        src: cloudflare-config.zsh.j2
-        dest: "~/.zsh/lib/cloudflare-api.zsh"
-        mode: "0700"
+    - name: Remove cloudflare config
+      file:
+        path: ~/.zsh/lib/cloudflare-api.zsh
+        state: absent
       become_user: "{{ ansible_user }}"
+
+      #- name: Put cloudflare configuration in place
+      #  template:
+      #    src: cloudflare-config.zsh.j2
+      #    dest: "~/.zsh/lib/cloudflare-api.zsh"
+      #    mode: "0700"
+      #  become_user: "{{ ansible_user }}"
   tags:
     - cloudflare
     - caddy
