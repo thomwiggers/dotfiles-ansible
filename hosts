@@ -2,27 +2,28 @@
 lethe
 styx
 cocytus
-oceanus
+hemnes
 archeron
 ansluta
 drona    # Pi Zero
 
 [backup]
-oceanus
+hemnes
 
 [archlinux]
 ansluta
 archeron
 cocytus
 lethe
-oceanus
+hemnes
 styx
+drona
 
 [powerline]
 lethe
 styx
 cocytus
-oceanus
+hemnes
 sandor
 lilo
 archeron
@@ -31,19 +32,19 @@ ansluta
 drona    # Pi Zero
 
 [distcc]
-oceanus
+hemnes
 ansluta
 
 # machines with a battery
 [battery]
 styx
-oceanus
+hemnes
 
 # machines that aren't headless
 [desktop]
 lethe
 styx
-oceanus
+hemnes
 lilo
 
 [remote_shells]
@@ -55,7 +56,7 @@ ygritte
 drona    # Pi Zero
 
 [vpn]
-oceanus
+hemnes
 archeron
 cocytus
 styx
