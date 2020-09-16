@@ -16,14 +16,6 @@
     src: zsh/
     dest: "{{ ansible_user_dir }}/.zsh"
 
-- name: Create zsh dirs
-  file:
-    state: directory
-    path: "{{ ansible_user_dir }}/{{ item }}"
-  loop:
-    - ".zsh"
-    - ".zsh/completions"
-
 - name: Install zshrc
   template:
     src: zsh/zshrc.j2

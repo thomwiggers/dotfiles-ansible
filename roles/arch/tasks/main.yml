@@ -59,11 +59,11 @@
   - name: Add key to Pacman
     command: "pacman-key --add {{ working_cache_dir }}/thomwiggers.gpg"
     register: result
-    changed_when: not "unchanged" in result.stderr
+    changed_when: not "unchanged" in result.stdout
 
   - name: Trust key
     command: pacman-key --lsign-key 915D4ED34871E82F
-    when: not "unchanged" in result.stderr
+    when: not "unchanged" in result.stdout
 
   - name: Include pacman configuration
     template:
