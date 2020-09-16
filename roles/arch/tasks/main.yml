@@ -63,7 +63,7 @@
 
   - name: Trust key
     command: pacman-key --lsign-key 915D4ED34871E82F
-    when: not "unchanged" in result.stdout
+    when: not "depth" in result.stdout
 
   - name: Include pacman configuration
     template:
