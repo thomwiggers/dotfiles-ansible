@@ -5,7 +5,7 @@
     get_url:
       url: https://archlinuxarm.org/builder/xtools/x-tools7h.tar.xz
       dest: /opt/x-tools7h.tar.xz
-      checksum: md5:856aa3e81afda734deff8fb2848d5760
+      checksum: md5:7015421efcdac437de27769a421a10a2
 
   - name: Extract x-tools
     unarchive:
