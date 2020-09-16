@@ -11,10 +11,12 @@ tools:
   - curl
   - fortune-mod
   - git
+  - git-delta
   - gnupg
   - htop
   - jq
   - nmap
+  - mosh
   - openbsd-netcat
   - p7zip
   - python
