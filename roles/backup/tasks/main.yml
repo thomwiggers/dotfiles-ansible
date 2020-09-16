@@ -1,5 +1,10 @@
 ---
 
+- name: Install restic
+  pacman:
+    name: restic
+  become: yes
+
 - name: Install backup script
   copy:
     src: "restic-backup.zsh"
