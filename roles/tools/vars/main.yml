@@ -14,19 +14,20 @@ tools:
   - git-delta
   - gnupg
   - htop
+  - inetutils
   - jq
-  - nmap
   - mosh
+  - nmap
   - openbsd-netcat
   - p7zip
   - python
   - python-pip
   - python-pipenv
+  - python-poetry
   - python-tox
   - python-virtualenv
   - python-virtualenvwrapper
   - python-wheel
-  - python-poetry
   - rsync
   - texlive-most
   - the_silver_searcher

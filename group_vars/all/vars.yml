@@ -3,3 +3,6 @@ powerline_enabled: false
 ansible_python_interpreter: /usr/bin/python3
 
 cloudflare_zone: "rded.nl"
+
+public_keys:
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMYVCn9rFWYffTRJDAJ/NPD0E7c6XyRwTAayTY4mwz14 thom@hemnes"

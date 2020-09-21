@@ -4,5 +4,11 @@
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyyLu1Ejp68N0+hZBkVCxJ9+nLAWaHEhQiUmf/2lgQI Termius installed by Ansible"
       user: "{{ ansible_user }}"
 
+  - name: Install SSH public keys
+    authorized_key:
+      key: "{{ item }}"
+      user: "{{ ansible_user }}"
+    loop: "{{ public_keys }}"
+
   tags:
     - ssh

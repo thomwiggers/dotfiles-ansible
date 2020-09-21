@@ -8,7 +8,7 @@
         upgrade: yes
     - name: Run Topgrade for local stuff
       command: topgrade --only vim gem rustup cargo flutter go pipx tlmgr
-      when: ansible_machine != "armv7l"
+      when: ansible_machine == "x86_64"
     - name: Figure out local hostname
       local_action: command hostname
       run_once: true
