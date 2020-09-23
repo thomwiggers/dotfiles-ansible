@@ -21,6 +21,9 @@ call vundle#begin()
 "Vundle manage vundle
 Plugin 'VundleVim/Vundle.vim'
 
+" Sensible settings
+Plugin 'tpope/vim-sensible'
+
 " Ansible
 Plugin 'pearofducks/ansible-vim'
 
@@ -109,8 +112,6 @@ set softtabstop=4
 set shiftwidth=4
 set tabstop=4                   " 4-space tab
 set expandtab
-set smarttab                    " At start of line, tab inserts sw, <BS> deletes sw
-set formatoptions+=n            " Support for numbered/bullet lists
 set virtualedit=block           " Allow virtual edit in block mode
 
 " --------------------
@@ -141,14 +142,11 @@ inoremap <Up> <C-o>gk
 "  UI
 " ----------------------
 set hidden                      " Don't abandon hidden buffers
-set ruler                       " Show cursor pos all the time
 set noshowcmd                   " don't display incomplete commands
 set nolazyredraw                " don't do this
 set number                      " Linenos
-set wildmenu                    " turn on wild menu
 set wildmode=list:longest,full
 set ch=1                        " cli height
-set backspace=2                 " allow backspacing over everything in insert mode
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 set shortmess=filtIoOa          " shorten messages
 set report=0                    " tell us about changes
@@ -161,6 +159,7 @@ set foldmethod=syntax           " markers are used to specify folds
 set foldminlines=0              " allow folding single lines
 set foldnestmax=3               " max vold nesting
 set formatoptions=
+set formatoptions+=n            " Support for numbered/bullet lists
 set formatoptions+=c            " format comments
 set formatoptions+=r            " continue comments by default
 set formatoptions+=o            " make comments when using o or O from comment line
@@ -169,6 +168,7 @@ set formatoptions+=n            " recognize numbered lists
 set formatoptions+=2            " Use indent from second line of a paragraph
 set formatoptions+=l            " Don't break long lines that were already long
 set formatoptions+=1            " break before 1-letter words
+set formatoptions+=j            " Delete comment character when joining commented lines
 set history=1000                " long history
 set hlsearch                    " highlight searches
 set ignorecase                  " Ignore case of search
