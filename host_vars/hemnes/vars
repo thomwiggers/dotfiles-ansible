@@ -17,3 +17,6 @@ wireguard_private_key: "{{ oceanus_wireguard_private_key }}"
 wireguard_preshared_key: "{{ oceanus_wireguard_preshared_key }}"
 wireguard_client_ip: 10.20.0.60
 wireguard_client_ipv6: "2a01:4f8:231:3ac7:1337:1000::60/124"
+
+# SSH
+ssh_private_key: "{{ hemnes_ssh_private_key }}"

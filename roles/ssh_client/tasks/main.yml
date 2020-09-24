@@ -6,9 +6,25 @@
 
   - name: Install SSH public keys
     authorized_key:
-      key: "{{ item }}"
+      key: "{{ item.value }}"
       user: "{{ ansible_user }}"
-    loop: "{{ public_keys }}"
+    loop: "{{ public_keys|dict2items }}"
+
+  - name: Install SSH private key
+    copy:
+      content: "{{ ssh_private_key }}"
+      mode: "0600"
+      owner: "{{ ansible_user }}"
+      dest: "{{ ansible_user }}/.ssh/id_ed25519"
+    when: "ssh_private_key|default('') != ''"
+
+  - name: Install SSH public key
+    copy:
+      content: "{{ public_keys[inventory_hostname] }}"
+      mode: "0644"
+      owner: "{{ ansible_user }}"
+      dest: "{{ ansible_user }}/.ssh/id_ed25519.pub"
+    when: "ssh_private_key|default('') != ''"
 
   tags:
     - ssh
