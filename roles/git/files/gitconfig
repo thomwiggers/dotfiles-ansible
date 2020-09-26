@@ -45,6 +45,7 @@
 	eol = lf
 	autocrlf = false
 	whitespace = fix
+    pager = delta
 [apply]
 	whitespace = fix
 [merge]
@@ -94,3 +95,9 @@
 	autoStash = true
 [submodule]
 	fetchJobs = 0
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+	features = line-numbers

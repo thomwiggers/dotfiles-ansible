@@ -11,7 +11,7 @@ tools:
   - curl
   - fortune-mod
   - git
-  - git-delta
+  - git-delta-bin
   - gnupg
   - htop
   - inetutils
