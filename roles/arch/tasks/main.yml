@@ -15,11 +15,26 @@
       src: "locale.conf"
       dest: "/etc/locale.conf"
 
+  - block:
+    - name: Create faillock config dir
+      file:
+        state: directory
+        path: /etc/security/faillock.conf.d
+        mode: "0755"
+
+    - name: Place override file for faillock
+      copy:
+        src: 10-faillock_override.conf
+        dest: /etc/security/faillock.conf.d/10-faillock_override.conf
+        mode: "0644"
+    tags:
+      - faillock
+
   - name: Create pacman hooks folder
     file:
       state: directory
       path: /etc/pacman.d/hooks
-      mode: 0664
+      mode: "0755"
 
   - block:
     - name: Make sure required packages for paccache hook are installed

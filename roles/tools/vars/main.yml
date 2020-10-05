@@ -29,7 +29,6 @@ tools:
   - python-virtualenvwrapper
   - python-wheel
   - rsync
-  - texlive-most
   - the_silver_searcher
   - tmux
   - unrar
