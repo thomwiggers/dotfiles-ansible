@@ -19,9 +19,11 @@ function restic-backup {
         "/home/thom/.gnupg" \
         "/home/thom/.ssh" \
         "/home/thom/.password-store" \
-        "/home/thom/.lastpass" \
         "/home/thom/.config" \
+        --exclude "/home/thom/.config/google-chrome" \
         --exclude "/home/thom/.config/chromium" \
+        --exclude "/home/thom/.config/Code" \
+        --exclude "/home/thom/.config/skypeforlinux" \
         --exclude-if-present ".rustc_info.json" \
         --exclude-if-present ".restic-ignore" \
         --exclude-caches \
