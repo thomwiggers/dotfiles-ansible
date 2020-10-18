@@ -16,16 +16,16 @@
       dest: "/etc/locale.conf"
 
   - block:
-    - name: Create faillock config dir
+    - name: Delete faillock config dir
       file:
-        state: directory
+        state: absent
         path: /etc/security/faillock.conf.d
-        mode: "0755"
+        recurse: yes
 
-    - name: Place override file for faillock
+    - name: Place faillock config
       copy:
-        src: 10-faillock_override.conf
-        dest: /etc/security/faillock.conf.d/10-faillock_override.conf
+        src: faillock.conf
+        dest: /etc/security/faillock.conf
         mode: "0644"
     tags:
       - faillock
