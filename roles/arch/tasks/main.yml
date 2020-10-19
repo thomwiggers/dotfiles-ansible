@@ -20,7 +20,6 @@
       file:
         state: absent
         path: /etc/security/faillock.conf.d
-        recurse: yes
 
     - name: Place faillock config
       copy:
