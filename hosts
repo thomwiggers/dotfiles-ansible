@@ -1,5 +1,4 @@
 [own_machines]
-lethe
 styx
 cocytus
 hemnes
@@ -14,13 +13,11 @@ hemnes
 ansluta
 archeron
 cocytus
-lethe
 hemnes
 styx
 drona
 
 [powerline]
-lethe
 styx
 cocytus
 hemnes
@@ -42,7 +39,6 @@ hemnes
 
 # machines that aren't headless
 [desktop]
-lethe
 styx
 hemnes
 lilo
