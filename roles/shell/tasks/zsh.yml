@@ -28,3 +28,10 @@
     responses:
       (?i)password: "{{ ansible_become_pass }}"
   when: ansible_user_shell != "/bin/zsh"
+
+- name: Download rushlink command
+  get_url:
+    url: https://gitea.hashru.nl/dsprenkels/rushlink/raw/branch/master/contrib/rushlink
+    dest: "{{ ansible_user_dir }}/.local/bin/rushlink"
+    force: yes
+    mode: "0755"
