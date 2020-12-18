@@ -32,6 +32,11 @@
       state: "absent"
     become: yes
 
+  - name: Copy topgrade configuration
+    copy:
+      src: topgrade.toml
+      dest: "{{ ansible_user_dir }}/.config/topgrade.toml"
+
   tags:
     - tools
     - packages
