@@ -15,6 +15,7 @@
       find_powerline:
       tags:
         - zsh
+        - vim
 
     - name: Make sure directories exist
       file:

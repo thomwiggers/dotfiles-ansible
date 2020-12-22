@@ -29,12 +29,10 @@
       dest: "{{ ansible_user_dir }}/.vimrc"
     register: vimrc
 
-  - name: Install Vundle
-    git:
-      repo: https://github.com/VundleVim/Vundle.vim.git
-      dest: "{{ ansible_user_dir }}/.vim/bundle/Vundle.vim"
-      update: yes
-      depth: 1
+  - name: Delete Vundle
+    file:
+      path: "{{ ansible_user_dir }}/.vim/bundle/Vundle.vim"
+      state: absent
   tags:
     - vim
 
