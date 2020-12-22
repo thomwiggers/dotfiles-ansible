@@ -35,3 +35,9 @@ extra_vpn_clients:
     preshared_key: LzvKvHHXA4CH8F4MrahiHqBrj0rkmO83i2LaIyNfEl4=
     client_ip: 10.20.0.240
     client_ipv6: 2a01:4f8:231:3ac7:1337:1000::240/124
+# New VPN client
+  - name: iphone_thom
+    public_key: UWLNqjOTcKPpR500MMRpCeAPIOgZlLrhkP9XKWp3HAo=
+    preshared_key: GEAd2oqBlUToWCvNPdPMI2jymVC9JTnE0G4MvV0/phI=
+    client_ip: "10.20.0.203"
+    client_ipv6: 2a01:4f8:231:3ac7:1337:1000::203/124
